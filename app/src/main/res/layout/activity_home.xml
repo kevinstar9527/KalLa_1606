@@ -21,17 +21,17 @@
             android:id="@+id/btn_discover"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/btn_toolbar_discover_normal"/>
+            android:src="@drawable/selector_discover_btn"/>
         <ImageView
             android:clickable="true"
-            android:src="@drawable/btn_myradio_listen_normal"
+            android:src="@drawable/selector_myradio_btn"
             android:layout_weight="1"
             android:id="@+id/btn_mine"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
         <ImageView
             android:clickable="true"
-            android:src="@drawable/btn_toolbar_download_normal"
+            android:src="@drawable/selector_download_btn"
             android:layout_weight="1"
             android:id="@+id/btn_offline"
             android:layout_height="match_parent"
