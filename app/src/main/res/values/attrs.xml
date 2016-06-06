@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--indexView的自定义属性-->
+    <declare-styleable name="index_view">
+        <attr name="count" format="integer"></attr><!--几个圆-->
+        <attr name="radius" format="float"></attr><!--圆点的半径-->
+        <attr name="defaultColor" format="color|reference"></attr><!--默认颜色-->
+        <attr name="selecterColor" format="color|reference"></attr><!--选中颜色-->
+        <attr name="circlePadding" format="float"></attr><!--间距-->
+    </declare-styleable>
+</resources>

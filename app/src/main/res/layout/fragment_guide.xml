@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <a05.qianfeng.edu.cn.kalla_1606.other.widget.FullScreenVideoView
+        android:id="@+id/guide_vv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <ImageView
+        android:visibility="invisible"
+        android:id="@+id/guide_right_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/guide_anim_1_1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="110dp"
+        android:layout_marginRight="30dp"/>
+    <ImageView
+        android:visibility="invisible"
+        android:id="@+id/guide_left_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/guide_anim_1_2"
+        android:layout_alignBottom="@id/guide_right_iv"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/guide_right_iv"
+
+       />
+
+</RelativeLayout>
