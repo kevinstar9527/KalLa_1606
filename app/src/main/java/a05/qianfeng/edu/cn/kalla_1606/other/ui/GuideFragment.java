@@ -104,6 +104,7 @@ public class GuideFragment extends Fragment {
     public void showAnim(){
 
         ivRight.setVisibility(View.INVISIBLE);
+        ivLeft.setVisibility(View.INVISIBLE);
         //当切换回来时，开启动画
         videoView.start();
         //加载动画(需要改成局部变量)

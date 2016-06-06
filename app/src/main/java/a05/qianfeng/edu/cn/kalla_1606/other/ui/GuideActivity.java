@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +59,10 @@ public class GuideActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        //充满全屏
+        //requestWindowFeature(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //界面全屏显示
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_guide);
         indexView = (IndexView) findViewById(R.id.dot);
         viewPager = (ViewPager) findViewById(R.id.guide_vp);
@@ -78,14 +82,16 @@ public class GuideActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
 
+                //隐藏上一次的画面
+                if(lastPositon!=-1){
+                    GuideFragment fragment1= (GuideFragment) list.get(lastPositon);
+                    fragment1.isHidden();
+                }
+
                 //显示当前页面的动画
                 GuideFragment fragment= (GuideFragment) list.get(position);
                 fragment.showAnim();
-                //隐藏上一次的画面
-                if(lastPositon!=-1){
-                GuideFragment fragment1= (GuideFragment) list.get(lastPositon);
-                    fragment1.isHidden();
-               }
+
                 //设置小圆点
                 indexView.setCurrIndex(position);
                 //
