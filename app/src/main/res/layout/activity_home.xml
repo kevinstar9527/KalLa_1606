@@ -3,40 +3,50 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+
+    <FrameLayout
+        android:id="@+id/home_fragment_container"
+        android:layout_above="@+id/bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="这是主界面"/>
+        android:layout_height="match_parent">
+    </FrameLayout>
 
     <RadioGroup
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bar"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
-        <ImageView
-            android:clickable="true"
+        <RadioButton
+            android:drawableTop="@drawable/selector_discover_btn"
+            android:text="发现"
+            android:textAlignment="center"
             android:layout_weight="1"
+            android:button="@null"
             android:id="@+id/btn_discover"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/selector_discover_btn"/>
-        <ImageView
-            android:clickable="true"
-            android:src="@drawable/selector_myradio_btn"
+            />
+        <RadioButton
+            android:drawableTop="@drawable/selector_myradio_btn"
+            android:button="@null"
+            android:text="电台"
+            android:textAlignment="center"
             android:layout_weight="1"
             android:id="@+id/btn_mine"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
-        <ImageView
-            android:clickable="true"
-            android:src="@drawable/selector_download_btn"
+        <RadioButton
+            android:drawableTop="@drawable/selector_download_btn"
+            android:button="@null"
+            android:text="离线"
+            android:textAlignment="center"
             android:layout_weight="1"
             android:id="@+id/btn_offline"
             android:layout_height="match_parent"
             android:layout_width="wrap_content"/>
 
     </RadioGroup>
-
 </RelativeLayout>

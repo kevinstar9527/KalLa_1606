@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent">
+<TextView
+    android:layout_width="match_parent"
+    android:text="这是广告页面，点击按钮跳转"
+    android:gravity="center"
+    android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="wrap_content"
+        android:text="跳转"
+        android:onClick="jumpToHome"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -1,7 +1,7 @@
 package a05.qianfeng.edu.cn.kalla_1606.other.utils;
 
 /**
- *
+ *e.g 第一次进入时开启导航页，第二次之后进入页面时，开启广告页
  * 本应用里面需要用的常量全部放这里
  * Created by Administrator on 2016/6/6.
  */
