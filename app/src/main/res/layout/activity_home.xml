@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="这是主界面"/>
+
+    <RadioGroup
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:clickable="true"
+            android:layout_weight="1"
+            android:id="@+id/btn_discover"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/btn_toolbar_discover_normal"/>
+        <ImageView
+            android:clickable="true"
+            android:src="@drawable/btn_myradio_listen_normal"
+            android:layout_weight="1"
+            android:id="@+id/btn_mine"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <ImageView
+            android:clickable="true"
+            android:src="@drawable/btn_toolbar_download_normal"
+            android:layout_weight="1"
+            android:id="@+id/btn_offline"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"/>
+
+    </RadioGroup>
+
+</RelativeLayout>
