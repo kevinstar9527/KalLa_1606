@@ -8,13 +8,15 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="home_radio_button">
+
          <item name="android:button">@null</item>
         <item name="android:textAlignment">center</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textColor">@color/selector_radio_color</item>
-        <item name="android:drawablePadding">10dp</item><!--图标和文字之间的间距（上下左右皆可以）-->
+        <item name="android:drawablePadding">5dp</item><!--图标和文字之间的间距（上下左右皆可以）-->
+        <item name="android:layout_marginTop">5dp</item><!--控件与父布局的上面的间距-->
     </style>
     <style name="horizontal_line">
         <item name="android:layout_width">match_parent</item>

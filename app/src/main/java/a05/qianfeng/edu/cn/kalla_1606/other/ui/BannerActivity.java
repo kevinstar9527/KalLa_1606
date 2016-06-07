@@ -1,6 +1,8 @@
 package a05.qianfeng.edu.cn.kalla_1606.other.ui;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -8,10 +10,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import a05.qianfeng.edu.cn.kalla_1606.R;
+import a05.qianfeng.edu.cn.kalla_1606.other.utils.FileUtil;
+import a05.qianfeng.edu.cn.kalla_1606.other.utils.HttpUtils;
+import a05.qianfeng.edu.cn.kalla_1606.other.utils.KaoLaTask;
+import a05.qianfeng.edu.cn.kalla_1606.other.utils.LogUtil;
+import a05.qianfeng.edu.cn.kalla_1606.other.utils.OtherHttpUtils;
 
 /**
  * Created by Administrator on 2016/6/6.
@@ -25,6 +36,8 @@ public class BannerActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_banner);
+        imageView = (ImageView) findViewById(R.id.banner_content_iv);
+
         task = new TimerTask() {
             @Override
             public void run() {
@@ -51,6 +64,57 @@ public class BannerActivity extends AppCompatActivity {
         线程调度
 */
         timer.schedule(task,1000,1000);
+        //测试新的封装类
+        KaoLaTask.IRequest request = new KaoLaTask.IRequest(){
+
+
+            @Override
+            public Object doRequest() {
+                return HttpUtils.doGet("");
+            }
+        };
+
+
+
+
+        new Thread(){
+            @Override
+            public void run() {
+               Object o =  HttpUtils.doGet(OtherHttpUtils.url);
+                try {
+                    JSONObject root = new JSONObject(o.toString());
+                    String message = root.getString("message");
+                    if("success".equals(message)) {
+                        JSONObject result = root.getJSONObject("result");
+
+                        String img = result.getString("img");
+                        LogUtil.w("json图片请求成功 img = "+img);
+
+                       String rename = FileUtil.getFileNameByHashCode(img);
+                        File image = new File(FileUtil.dir_image,"banner.jpg");
+                        //判断这个图片有没有下载过，如果存在表示下载过
+                        if(!image.exists()) {
+                            image = HttpUtils.downLoadBitmap(img, FileUtil.dir_image, "banner.jpg");
+                        }
+
+                        final Bitmap bitmap = BitmapFactory.decodeFile(image.getAbsolutePath());
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                //显示图片
+                                if(bitmap!=null) {
+                                    imageView.setImageBitmap(bitmap);
+                                }else{
+                                    LogUtil.e("bitMap的值没有取到！");
+                                }
+                            }
+                        });
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
     }
 
     @Override

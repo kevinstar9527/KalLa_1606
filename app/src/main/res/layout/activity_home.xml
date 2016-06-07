@@ -37,6 +37,8 @@
             android:text="@string/home_rb_mine"
             style="@style/home_radio_button" />
         <RadioButton
+
+
             android:drawableTop="@drawable/selector_download_btn"
             android:text="@string/home_rb_download"
             android:id="@+id/btn_offline"
