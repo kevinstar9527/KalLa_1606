@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">KalLa_1606</string>
+    <string name="home_rd_discover">发现</string>
+    <string name="home_rb_mine">我的</string>
+    <string name="home_rb_download">离线</string>
+
+
 </resources>

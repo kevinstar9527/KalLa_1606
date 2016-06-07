@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="提示"
+        android:id="@+id/textHead"/>
+    <TextView
+        android:id="@+id/content"
+        android:gravity="left"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@id/textHead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="退出后不能收听，确定要退出吗?"/>
+    <Button
+        android:id="@+id/exit"
+        android:layout_below="@id/content"
+        android:text="退出"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/smallest"
+        android:layout_below="@id/content"
+        android:layout_toRightOf="@id/exit"
+        android:text="最小化"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/cancel"
+        android:layout_toRightOf="@id/smallest"
+        android:layout_below="@id/content"
+        android:text="取消"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

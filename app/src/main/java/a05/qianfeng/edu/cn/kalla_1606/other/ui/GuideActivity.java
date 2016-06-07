@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import a05.qianfeng.edu.cn.kalla_1606.R;
-import a05.qianfeng.edu.cn.kalla_1606.other.adapter.GuideAdapter;
+import a05.qianfeng.edu.cn.kalla_1606.other.adapter.CommonFragmentPagerAdapter;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.Contants;
 import a05.qianfeng.edu.cn.kalla_1606.other.widget.IndexView;
 
@@ -71,7 +71,7 @@ public class GuideActivity extends AppCompatActivity {
             GuideFragment fragment = new GuideFragment(ivLefts[i],ivRights[i],videoIds[i],i);
             list.add(fragment);
         }
-        GuideAdapter adapter = new GuideAdapter(getSupportFragmentManager(),list);
+        CommonFragmentPagerAdapter adapter = new CommonFragmentPagerAdapter(getSupportFragmentManager(),list);
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

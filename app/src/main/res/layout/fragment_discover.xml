@@ -1,14 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <TextView
-        android:gravity="center"
-        android:text="这是Discover的界面"
+<!--标题栏-->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="@dimen/activity_title_bar_distance"
+        android:background="@color/public_red"
+        android:orientation="horizontal"
+        >
+    <EditText
+        android:id="@+id/discover_search_et"
+        android:drawableLeft="@drawable/search_icon"
+        android:hint = "人,专辑,节目"
+        android:textSize="14sp"
+        android:textColor="@android:color/white"
+        android:gravity="left|center"
+        android:layout_margin="15dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:editable="true"
+        android:textColorHint="@android:color/white"
+        android:background="@drawable/search_input_bg"/>
 
+    <ImageView
+        android:background="@drawable/icon_now_listening_06"
+        android:id="@+id/discover_paly_iv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="15dp"/>
+    </LinearLayout>
+
+    <!--分类导航-->
+    <android.support.design.widget.TabLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:tabIndicatorColor="@color/public_red"
+        app:tabTextColor="@color/public_gray"
+        android:id="@+id/dicover_tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.design.widget.TabLayout>
+    <View
+        style="@style/horizontal_line"
+        ></View>
+    <!--viewPager显示的内容-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/radio_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
 </LinearLayout>
