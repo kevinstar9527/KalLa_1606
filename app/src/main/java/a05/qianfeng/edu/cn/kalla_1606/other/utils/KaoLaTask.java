@@ -27,12 +27,12 @@ public class KaoLaTask extends AsyncTask<Void,Void,Object> {
     }
 
     @Override
-    protected void onPostExecute(Object o) {
+    protected void onPostExecute(Object result) {
 
-        if(request==null){
+        if(result==null){
             callBack.error("请求失败了");
         }else{
-            callBack.success(request);
+            callBack.success(result);
         }
     }
 

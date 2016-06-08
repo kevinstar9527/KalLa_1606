@@ -42,7 +42,7 @@ public class HomeActivity extends AppCompatActivity {
         initView();
         fragments = new Fragment[]{
                 new DiscoverFragment(),
-                new MyRadioFragment(),
+                new MyRadioFragment(this),
                 new DownLoadOfflineFragment()
         };
 

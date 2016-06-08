@@ -47,12 +47,12 @@ public class BannerActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         //给一个界面提示
-                        Toast.makeText(BannerActivity.this,"倒计时"+time+"秒 跳转",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BannerActivity.this, "倒计时" + time + "秒 跳转", Toast.LENGTH_SHORT).show();
 
                     }
                 });
-                if(time==0){
-                    Intent intent =new Intent(BannerActivity.this,HomeActivity.class);
+                if (time == 0) {
+                    Intent intent = new Intent(BannerActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -63,58 +63,109 @@ public class BannerActivity extends AppCompatActivity {
         一秒钟后每隔一秒钟开始执行，并且每隔一秒钟执行一次
         线程调度
 */
-        timer.schedule(task,1000,1000);
+        timer.schedule(task, 1000, 1000);
         //测试新的封装类
-        KaoLaTask.IRequest request = new KaoLaTask.IRequest(){
 
-
+        OtherHttpUtils.getBanner(new KaoLaTask.IRequestCallBack() {
             @Override
-            public Object doRequest() {
-                return HttpUtils.doGet("");
-            }
-        };
-
-
-
-
-        new Thread(){
-            @Override
-            public void run() {
-               Object o =  HttpUtils.doGet(OtherHttpUtils.url);
+            public void success(Object resultPre) {
+                JSONObject root = null;
                 try {
-                    JSONObject root = new JSONObject(o.toString());
-                    String message = root.getString("message");
-                    if("success".equals(message)) {
-                        JSONObject result = root.getJSONObject("result");
-
-                        String img = result.getString("img");
-                        LogUtil.w("json图片请求成功 img = "+img);
-
-                       String rename = FileUtil.getFileNameByHashCode(img);
-                        File image = new File(FileUtil.dir_image,"banner.jpg");
-                        //判断这个图片有没有下载过，如果存在表示下载过
-                        if(!image.exists()) {
-                            image = HttpUtils.downLoadBitmap(img, FileUtil.dir_image, "banner.jpg");
-                        }
-
-                        final Bitmap bitmap = BitmapFactory.decodeFile(image.getAbsolutePath());
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                //显示图片
-                                if(bitmap!=null) {
-                                    imageView.setImageBitmap(bitmap);
-                                }else{
-                                    LogUtil.e("bitMap的值没有取到！");
-                                }
-                            }
-                        });
-                    }
+                    //检测返回的数据的正确性
+                    LogUtil.w(resultPre.toString());
+                    root = new JSONObject(resultPre.toString());
+                    JSONObject result = root.getJSONObject("result");
+                    String img = result.getString("img");
+                    LogUtil.w("img = " + img);
+                    showImage(img);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-        }.start();
+
+
+            @Override
+            public void error(String msg) {
+                
+            }
+        });
+
+
+//        new Thread(){
+//            @Override
+//            public void run() {
+//               Object o =  HttpUtils.doGet(OtherHttpUtils.url);
+//                try {
+//                    JSONObject root = new JSONObject(o.toString());
+//                    String message = root.getString("message");
+//                    if("success".equals(message)) {
+//                        JSONObject result = root.getJSONObject("result");
+//
+//                        String img = result.getString("img");
+//                        LogUtil.w("json图片请求成功 img = "+img);
+//
+//                       String rename = FileUtil.getFileNameByHashCode(img);
+//                        File image = new File(FileUtil.dir_image,"banner.jpg");
+//                        //判断这个图片有没有下载过，如果存在表示下载过
+//                        if(!image.exists()) {
+//                            image = HttpUtils.downLoadBitmap(img, FileUtil.dir_image, "banner.jpg");
+//                        }
+//
+//                        final Bitmap bitmap = BitmapFactory.decodeFile(image.getAbsolutePath());
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                //显示图片
+//                                if(bitmap!=null) {
+//                                    imageView.setImageBitmap(bitmap);
+//                                }else{
+//                                    LogUtil.e("bitMap的值没有取到！");
+//                                }
+//                            }
+//                        });
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }.start();
+//    }
+
+    /*img是图片的url？yes*/
+    }
+
+    private void showImage(final String img){
+        final String rename = FileUtil.getFileNameByHashCode(img);
+        File image = new File(FileUtil.dir_image,rename);
+        //判断着个图片有没有下载过，如果存在，表示下载过
+        if(!image.exists()) {
+            KaoLaTask.IRequest request = new KaoLaTask.IRequest() {
+                @Override
+                public Object doRequest() {
+                    //下载图片
+                    return HttpUtils.downLoadBitmap(img, FileUtil.dir_image, rename);
+                }
+            };
+
+            KaoLaTask.IRequestCallBack callBack = new KaoLaTask.IRequestCallBack() {
+                @Override
+                public void success(Object object) {
+                    //将返回的图片资源提取出来（目的是为了得到它的缓存路径）
+                    File file = (File) object;
+                    final Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                    imageView.setImageBitmap(bitmap);
+
+                }
+
+                @Override
+                public void error(String msg) {
+                    Toast.makeText(BannerActivity.this, msg, Toast.LENGTH_SHORT).show();
+                }
+            };
+
+            KaoLaTask kaoLaTask = new KaoLaTask(request,callBack);
+            kaoLaTask.execute();
+        }
     }
 
     @Override
