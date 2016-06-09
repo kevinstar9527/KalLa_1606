@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <a05.qianfeng.edu.cn.kalla_1606.other.widget.SpecialItem
+        android:id="@+id/si1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"></a05.qianfeng.edu.cn.kalla_1606.other.widget.SpecialItem>
+    <a05.qianfeng.edu.cn.kalla_1606.other.widget.SpecialItem
+        android:id="@+id/si2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"></a05.qianfeng.edu.cn.kalla_1606.other.widget.SpecialItem>
+    <a05.qianfeng.edu.cn.kalla_1606.other.widget.SpecialItem
+        android:id="@+id/si3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"></a05.qianfeng.edu.cn.kalla_1606.other.widget.SpecialItem>
+
+
+</LinearLayout>

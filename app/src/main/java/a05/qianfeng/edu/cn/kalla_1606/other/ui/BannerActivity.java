@@ -86,7 +86,7 @@ public class BannerActivity extends AppCompatActivity {
 
             @Override
             public void error(String msg) {
-                
+
             }
         });
 

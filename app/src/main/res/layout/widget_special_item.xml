@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+    android:layout_centerHorizontal="true"
+    android:background="@color/public_red"
+    android:id="@+id/special_iv"
+    android:layout_width="130dp"
+    android:layout_height="130dp" />
+    <TextView
+        android:id="@+id/speical_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/special_iv"
+        android:layout_alignLeft="@id/special_iv"
+        android:layout_margin="10dp"
+        android:text="情感自愈系"/>
+    <ImageView
+        android:layout_margin="25dp"
+        android:background="@drawable/btn_recommend_play_normal"
+        android:id="@+id/special_item_des_iv"
+        android:layout_width="30dp"
+        android:layout_alignBottom="@id/special_iv"
+        android:layout_alignRight="@id/special_iv"
+        android:layout_height="30dp"
+        />
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:id="@+id/special_itme_content"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/special_iv"
+        android:layout_margin="10dp"
+        android:maxLines="2"
+        android:textColor="@color/colorAccent"
+        android:text="女人的路比格局更重要"
+        />
+
+
+</RelativeLayout>

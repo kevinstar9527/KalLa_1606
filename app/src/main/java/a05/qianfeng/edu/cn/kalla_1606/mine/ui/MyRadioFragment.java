@@ -17,6 +17,7 @@ public class MyRadioFragment extends BaseFragment {
     private HomeActivity activity;
     private TabLayout tabLayout;
 
+  public  MyRadioFragment(){}
 
     @SuppressLint("ValidFragment")
     public MyRadioFragment(HomeActivity activity){

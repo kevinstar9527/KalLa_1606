@@ -55,7 +55,7 @@ public class DiscoverFragment extends BaseFragment {
         list.add(new LiveFragment());
         list.add(new AnchorFragment());
 
-        CommonFragmentPagerAdapter viewPagerAdapter = new CommonFragmentPagerAdapter(getActivity().getSupportFragmentManager(), list);
+        CommonFragmentPagerAdapter viewPagerAdapter = new CommonFragmentPagerAdapter(getChildFragmentManager(), list);
         viewPager.setAdapter(viewPagerAdapter);
     }
 
