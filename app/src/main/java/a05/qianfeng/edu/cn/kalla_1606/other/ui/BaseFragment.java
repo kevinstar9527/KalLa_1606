@@ -19,6 +19,8 @@ public abstract class BaseFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         root = inflater.inflate(getLayoutId(),null);
+        /*如果不设置下面这句，将无法填充菜单*/
+        setHasOptionsMenu(true);
         return root;
     }
 

@@ -26,7 +26,7 @@ public class SpecialPannel extends LinearLayout {
         setRecommend(recommond);
         //左下右上
         setPadding(30,30,30,30);
-        setOrientation(VERTICAL);
+        setOrientation(HORIZONTAL);
     }
 
     public SpecialPannel(Context context, AttributeSet attrs) {

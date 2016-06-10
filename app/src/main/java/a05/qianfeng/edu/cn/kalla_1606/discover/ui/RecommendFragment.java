@@ -1,14 +1,12 @@
 package a05.qianfeng.edu.cn.kalla_1606.discover.ui;
 
-import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +25,7 @@ import a05.qianfeng.edu.cn.kalla_1606.other.ui.BaseFragment;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.KaoLaTask;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.LogUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.widget.SpecialPannel;
-import a05.qianfeng.edu.cn.kalla_1606.other.widget.VerticalText;
+import a05.qianfeng.edu.cn.kalla_1606.other.widget.VerticalTextAndImageLayout;
 
 /**
  * Created by Administrator on 2016/6/7.
@@ -184,21 +182,29 @@ private void addVerticalScrollText(Recommond recommond){
     }
 
 
-    final VerticalText view = new VerticalText(getActivity(),list);
-    view.setBackgroundColor(Color.GRAY);
-    LinearLayout.LayoutParams params;
-    params=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,50);
-    params.topMargin=20;
-    params.bottomMargin=50;
-    view.setLayoutParams(params);
-    llroot.addView(view);
-    view.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-           int currIndex =  view.getCurrIndex();
-            Toast.makeText(getActivity(),list.get(currIndex),Toast.LENGTH_LONG).show();
-        }
-    });
+//    final VerticalText view = new VerticalText(getActivity(),list);
+//    view.setBackgroundColor(Color.GRAY);
+//    LinearLayout.LayoutParams params;
+//    params=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,50);
+//    params.topMargin=20;
+//    params.bottomMargin=50;
+//    view.setLayoutParams(params);
+//    llroot.addView(view);
+//    view.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//           int currIndex =  view.getCurrIndex();
+//            Toast.makeText(getActivity(),list.get(currIndex),Toast.LENGTH_LONG).show();
+//        }
+//    });
+
+    /*尝试
+    /*正在设置布局*/
+    Log.w("Layout","正在设置布局");
+    VerticalTextAndImageLayout banner = new VerticalTextAndImageLayout(getContext(),list);
+    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,200);
+    banner.setLayoutParams(params);
+    llroot.addView(banner);
 
 }
 

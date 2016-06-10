@@ -14,7 +14,7 @@ import a05.qianfeng.edu.cn.kalla_1606.R;
  * ViewPager的索引
  * Created by Administrator on 2016/6/6.
  */
-public class IndexView extends View{
+public class IndexViewDot extends View{
 
     /*
     * 几个圆？
@@ -43,11 +43,11 @@ public class IndexView extends View{
     * */
     private int currIndex;
 
-    public IndexView(Context context) {
+    public IndexViewDot(Context context) {
         super(context);
     }
 
-    public IndexView(Context context, AttributeSet attrs) {
+    public IndexViewDot(Context context, AttributeSet attrs) {
         super(context, attrs);
         //解析自定义属性
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.index_view);

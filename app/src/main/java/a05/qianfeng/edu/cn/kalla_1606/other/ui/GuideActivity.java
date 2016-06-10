@@ -17,7 +17,7 @@ import java.util.List;
 import a05.qianfeng.edu.cn.kalla_1606.R;
 import a05.qianfeng.edu.cn.kalla_1606.other.adapter.CommonFragmentPagerAdapter;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.Contants;
-import a05.qianfeng.edu.cn.kalla_1606.other.widget.IndexView;
+import a05.qianfeng.edu.cn.kalla_1606.other.widget.IndexViewDot;
 
 /**
  * 引导页
@@ -28,7 +28,7 @@ import a05.qianfeng.edu.cn.kalla_1606.other.widget.IndexView;
 public class GuideActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
-    private IndexView indexView;
+    private IndexViewDot indexViewDot;
 
     private int[] videoIds = new int[]{
       R.raw.splash_1,
@@ -64,7 +64,7 @@ public class GuideActivity extends AppCompatActivity {
         //界面全屏显示
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_guide);
-        indexView = (IndexView) findViewById(R.id.dot);
+        indexViewDot = (IndexViewDot) findViewById(R.id.dot);
         viewPager = (ViewPager) findViewById(R.id.guide_vp);
         final List<Fragment> list = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
@@ -93,7 +93,7 @@ public class GuideActivity extends AppCompatActivity {
                 fragment.showAnim();
 
                 //设置小圆点
-                indexView.setCurrIndex(position);
+                indexViewDot.setCurrIndex(position);
                 //
                 lastPositon=position;
 

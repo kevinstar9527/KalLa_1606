@@ -17,5 +17,6 @@ public class KaoLaApplication extends Application {
         //因为ImageLoader需要在运用时先初始化，所以需要在Application类中初始化
         ImageLoaderConfiguration configuration = ImageLoaderConfiguration.createDefault(this);
         ImageLoader.getInstance().init(configuration);
+
     }
 }

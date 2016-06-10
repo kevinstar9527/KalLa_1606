@@ -18,7 +18,7 @@ import a05.qianfeng.edu.cn.kalla_1606.other.utils.LogUtil;
  * 纵向滚动的TextView
  * Created by Administrator on 2016/6/8.
  */
-public class VerticalText extends View{
+public class VerticalTextAndRoundRect extends View{
 
    // private List<String> list;
     //设置滚动的速度(及向上的偏移量)
@@ -73,15 +73,14 @@ public class VerticalText extends View{
     /*是否停止滑动，用来防止退出界面的时候线程还在继续执行*/
     private boolean toggle = false;
 
-    public VerticalText(Context context, List<String> list) {
+    public VerticalTextAndRoundRect(Context context, List<String> list) {
         super(context);
-
         this.list = list;
         /*设置文字的画笔属性*/
         paint.setColor(textColor);
         paint.setTextSize(textSize);
         /*设置圆角矩形的画笔和矩形属性*/
-       // paintRectAttributeSet();
+        paintRectAttributeSet();
         start();
     }
 
@@ -93,13 +92,13 @@ public class VerticalText extends View{
         paintRec.setStyle(Paint.Style.STROKE);//空心效果
 
         /*设置矩形的位置*/
-        circleRec.left = 2;
+        circleRec.left = 1;
       //  circleRec.right=height;
-        circleRec.top=2;
+        circleRec.top=1;
         //circleRec.bottom=height;
     }
 
-    public VerticalText(Context context, AttributeSet attrs) {
+    public VerticalTextAndRoundRect(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -112,14 +111,13 @@ public class VerticalText extends View{
 
         /*画一个圆角矩形*/
 
-       // LogUtil.e("圆角矩阵正在绘画......"+"top : "+ circleRec.top+"...left :"+circleRec.left+".....right:"+circleRec.right);
-       // canvas.drawRoundRect(circleRec,10,10,paintRec);
-        LogUtil.e("正在画字符");
+      //  LogUtil.e("圆角矩阵正在绘画......"+"top : "+ circleRec.top+"...left :"+circleRec.left+".....right:"+circleRec.right);
+       canvas.drawRoundRect(circleRec,10,10,paintRec);
 
         /*画第一个字符*/
-        canvas.drawText(text1,0,currY1,paint);
+        canvas.drawText(text1,2,currY1,paint);
         /*画第二个字符*/
-        canvas.drawText(text2,0,currY2,paint);
+        canvas.drawText(text2,2,currY2,paint);
 
     }
 
@@ -148,8 +146,9 @@ public class VerticalText extends View{
 
                /*获取控件高度*/
                height = getHeight();
-               circleRec.right=height;
-               circleRec.bottom=height;
+               circleRec.right=textSize*2;
+               /*设置圆角矩阵的底部的一个文字的高度的三分之五*/
+               circleRec.bottom=textSize+textSize/3*2;
                /*要偏移多少次 要移动多少次？*/
                int count = height / speed;
 
@@ -187,7 +186,7 @@ public class VerticalText extends View{
         }
 
       //  LogUtil.w("scroll CurrY2"+ currY2);
-      //  LogUtil.w("scroll CurrY1"+ currY1);
+     //   LogUtil.w("scroll CurrY1"+ currY1);
         //开始变更坐标
         currY1=  currY1-speed;
         currY2 = currY1+height;
@@ -236,7 +235,7 @@ public class VerticalText extends View{
         postDelayed(new Runnable() {
             @Override
             public void run() {
-               // LogUtil.e("当前的Index.....:"+currIndex);
+              //  LogUtil.e("当前的Index.....:"+currIndex);
                 prepareScroll();
             }
         },deLayTime);
@@ -248,16 +247,20 @@ public class VerticalText extends View{
         return currY1;
     }
 
+    public int getCurrY2() {
+        return currY2;
+    }
+
     /********************************************************/
 
-   public  void setList(List<String > list)
+    public  void setList(List<String > list)
     {
         this.list = list;
     }
     /*获取当前滚动的下标*/
     public int getCurrIndex(){
 
-       // LogUtil.e("点击后的IndexCurrent....:"+currIndex);
+        LogUtil.e("点击后的IndexCurrent....:"+currIndex);
 
         if(currIndex%list.size()==0){
             return 0;

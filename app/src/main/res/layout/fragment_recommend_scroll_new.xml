@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+    <ImageView
+        android:id="@+id/banner_iv"
+        android:src="@drawable/ic_com_sina_weibo_sdk_login_button_with_frame_logo_focused"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+    <a05.qianfeng.edu.cn.kalla_1606.other.widget.VerticalText
+        android:layout_weight="1"
+        android:id="@+id/banner_content_tv_l"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+    <a05.qianfeng.edu.cn.kalla_1606.other.widget.VerticalTextAndRoundRect
+        android:id="@+id/banner_content_tv_r"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"/>
+</LinearLayout>

@@ -19,7 +19,7 @@
         android:background="@drawable/selector_guide_btn"
         android:layout_marginBottom="80dp"
         />
-    <a05.qianfeng.edu.cn.kalla_1606.other.widget.IndexView
+    <a05.qianfeng.edu.cn.kalla_1606.other.widget.IndexViewDot
         android:id="@+id/dot"
         android:layout_width="200dp"
         android:layout_height="30dp"

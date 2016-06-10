@@ -7,7 +7,7 @@ import android.util.Log;
  */
 public  class LogUtil {
 
-    public static final boolean isDebug = true;
+    public static  boolean isDebug = true;
     public static final String TAG = LogUtil.class.getSimpleName();
     /*
     * 错误级别的日志
