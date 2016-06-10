@@ -11,8 +11,6 @@ import android.view.View;
 
 import java.util.List;
 
-import a05.qianfeng.edu.cn.kalla_1606.other.utils.LogUtil;
-
 /**
  *
  * 纵向滚动的TextView
@@ -114,7 +112,7 @@ public class VerticalText extends View{
 
        // LogUtil.e("圆角矩阵正在绘画......"+"top : "+ circleRec.top+"...left :"+circleRec.left+".....right:"+circleRec.right);
        // canvas.drawRoundRect(circleRec,10,10,paintRec);
-        LogUtil.e("正在画字符");
+       // LogUtil.e("正在画字符");
 
         /*画第一个字符*/
         canvas.drawText(text1,0,currY1,paint);

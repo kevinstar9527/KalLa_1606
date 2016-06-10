@@ -8,4 +8,10 @@
         <attr name="selecterColor" format="color|reference"></attr><!--选中颜色-->
         <attr name="circlePadding" format="float"></attr><!--间距-->
     </declare-styleable>
+    <!--indexViewLine的自定义属性-->
+    <declare-styleable name="index_view_line">
+        <attr name="countLine" format="integer"></attr><!--几个标签-->
+        <attr name="defaultColorLine" format="color|reference"/><!--默认颜色-->
+        <attr name="selectorColorLine" format="color|reference"/><!--选中颜色-->
+    </declare-styleable>
 </resources>

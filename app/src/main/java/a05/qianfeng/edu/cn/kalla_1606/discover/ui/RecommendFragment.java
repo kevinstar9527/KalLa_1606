@@ -1,5 +1,6 @@
 package a05.qianfeng.edu.cn.kalla_1606.discover.ui;
 
+import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,6 +25,7 @@ import a05.qianfeng.edu.cn.kalla_1606.other.adapter.CommonImageAdapter;
 import a05.qianfeng.edu.cn.kalla_1606.other.ui.BaseFragment;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.KaoLaTask;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.LogUtil;
+import a05.qianfeng.edu.cn.kalla_1606.other.widget.IndexViewLine;
 import a05.qianfeng.edu.cn.kalla_1606.other.widget.SpecialPannel;
 import a05.qianfeng.edu.cn.kalla_1606.other.widget.VerticalTextAndImageLayout;
 
@@ -33,6 +35,7 @@ import a05.qianfeng.edu.cn.kalla_1606.other.widget.VerticalTextAndImageLayout;
 public class RecommendFragment extends BaseFragment {
 
     private LinearLayout llroot;
+    private IndexViewLine indexViewLine;
 
 
     @Override
@@ -106,9 +109,28 @@ public class RecommendFragment extends BaseFragment {
     }
 
         private void addBanner(Recommond reconmend){
+
+
             //开始动态添加
             LogUtil.e("开始动态添加");
             LogUtil.w("广告画廊");
+            /*设置导航横线*/
+            indexViewLine = new IndexViewLine(getActivity());
+            indexViewLine.setBackgroundColor(Color.GRAY);
+
+
+            /*为导航效果设置宽高*/
+            int widthLine =ViewGroup.LayoutParams.MATCH_PARENT;
+            int heightLine = 10;
+            LinearLayout.LayoutParams rootParamsLine = new LinearLayout.LayoutParams(widthLine,heightLine);
+            indexViewLine.setLayoutParams(rootParamsLine);
+            /*得到ViewPager中的页面数*/
+            indexViewLine.setCount(reconmend.getDataList().size());
+
+            /*测试导航横线使用*/
+
+            indexViewLine.setCurrIndex(0);
+
             //获取屏幕宽度
           //  Display display = getActivity().getWindowManager().getDefaultDisplay();
             int width =ViewGroup.LayoutParams.MATCH_PARENT;
@@ -143,7 +165,31 @@ public class RecommendFragment extends BaseFragment {
             }
             CommonImageAdapter imageAdapter = new CommonImageAdapter(imageViews,urls);
             veiwPager.setAdapter(imageAdapter);
+
+            /*为ViewPager添加动态效果*/
+
+            veiwPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    indexViewLine.setCurrIndex(position);
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+
+
+            });
+
+
             llroot.addView(veiwPager);
+            llroot.addView(indexViewLine);
 
         }
 
@@ -171,7 +217,7 @@ public class RecommendFragment extends BaseFragment {
 
         llroot.addView(recyclerView);
     }
-private void addVerticalScrollText(Recommond recommond){
+    private void addVerticalScrollText(Recommond recommond){
     
     /*自定义控件不加业务逻辑，可在其他处用*/
     List<Special>dataList = recommond.getDataList();
@@ -216,6 +262,8 @@ private void addVerticalScrollText(Recommond recommond){
 
     @Override
     protected void initEvents() {
+
+
 
     }
 }
