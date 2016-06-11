@@ -14,4 +14,9 @@
         <attr name="defaultColorLine" format="color|reference"/><!--默认颜色-->
         <attr name="selectorColorLine" format="color|reference"/><!--选中颜色-->
     </declare-styleable>
+
+    <!--为ViewPagerBehavior定义属性-->
+    <declare-styleable name="target_view">
+        <attr name="behavior_target" format="reference"/>
+    </declare-styleable>
 </resources>

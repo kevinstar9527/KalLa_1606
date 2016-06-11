@@ -174,7 +174,7 @@ public class Recommond {
         //滚动快讯
         public static final int TYPE_SCROLL_NEW = 31;
         //积分商城
-        public static final int TYPE_JIFEN = 8;
+        public static final int TYPE_SINGLEBANNWE = 8;
         //猜你喜欢
         public static final int TYPE_GUESS_YOU_WHAT = 29;
 

@@ -1,21 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/ic_user_photo_default_bg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <android.support.v7.widget.Toolbar
+    <TextView
+        android:textColor="#D1D1D1"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/left_zhibo"
+        android:text="直播"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/middle_photo"
+        android:background="@drawable/ic_user_photo_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textColor="#D1D1D1"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="50dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/user_count"
+        android:text="账户"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:paddingTop="20dp"
+        android:id="@+id/login_state"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/middle_photo"
+        android:text="您还未登录"
+        android:textColor="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:paddingTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/login_state"
+        android:text="轻按即可注册或登录"
+        android:textColor="#D1D1D1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        >
-        <ImageView
-            android:src="@drawable/selector_myradio_msg"
-            android:clickable="true"
-            android:onClick="myradioIvClicked"
-            android:id="@+id/myradio_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-    </android.support.v7.widget.Toolbar>
 
 </RelativeLayout>

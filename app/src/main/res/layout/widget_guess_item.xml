@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_margin="10dp"
+        android:src="@color/public_red"
+        android:id="@+id/guess_iv"
+        android:layout_width="130dp"
+        android:layout_height="130dp" />
+    <ImageView
+       android:layout_margin="25dp"
+        android:src="@drawable/btn_recommend_play_normal"
+        android:id="@+id/special_item_des_iv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@id/guess_iv"
+        android:layout_alignRight="@id/guess_iv"/>
+    <TextView
+        android:id="@+id/title"
+        android:layout_toRightOf="@id/guess_iv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="张三丰见万岁爷"
+        android:layout_marginTop="25dp" />
+    <TextView
+        android:id="@+id/content"
+        android:layout_toRightOf="@id/guess_iv"
+        android:layout_below="@id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="张三丰见万岁爷"
+        android:textColor="@android:color/darker_gray"
+        android:drawableRight="@drawable/arrow_right"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="25dp" />
+    <TextView
+        android:layout_below="@id/content"
+        android:id="@+id/reason"
+        android:layout_toRightOf="@id/guess_iv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="推荐理由:一种新风格"
+        android:textColor="@android:color/darker_gray"
+
+        android:layout_marginTop="18dp"
+       />
+
+</RelativeLayout>

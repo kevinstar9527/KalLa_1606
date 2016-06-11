@@ -1,6 +1,5 @@
 package a05.qianfeng.edu.cn.kalla_1606.discover.ui;
 
-import android.graphics.Color;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +7,8 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,8 +24,10 @@ import a05.qianfeng.edu.cn.kalla_1606.discover.bean.Special;
 import a05.qianfeng.edu.cn.kalla_1606.discover.util.DiscoverUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.adapter.CommonImageAdapter;
 import a05.qianfeng.edu.cn.kalla_1606.other.ui.BaseFragment;
+import a05.qianfeng.edu.cn.kalla_1606.other.utils.ImageUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.KaoLaTask;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.LogUtil;
+import a05.qianfeng.edu.cn.kalla_1606.other.widget.GuessPannel;
 import a05.qianfeng.edu.cn.kalla_1606.other.widget.IndexViewLine;
 import a05.qianfeng.edu.cn.kalla_1606.other.widget.SpecialPannel;
 import a05.qianfeng.edu.cn.kalla_1606.other.widget.VerticalTextAndImageLayout;
@@ -69,32 +72,38 @@ public class RecommendFragment extends BaseFragment {
                         //用Gson解析list
                         List<Recommond> recommondList = Recommond.arrayRecommondFromData(dataList.toString());
                         LogUtil.e("reconmendList.seze = "+recommondList.size());
-//                        for(int i =0 ;i<recommondList.size();i++){
-//                            Recommond recommend = recommondList.get(i);
-//
-//                           //根据ComponentType判断要显示什么样的item布局
-//                            switch (recommend.getComponentType()){
-//                                case Recommond.ComponentType.TYPE_Banner:
-//                                      addBanner(recommend);
-//                                        break;
-//                                case Recommond.ComponentType.TYPE_ENTER:
-//                                       addEnter(recommend);
-//                                        break;
-//                                case Recommond.ComponentType.TYPE_SCROLL_NEW://滚动快讯
-//                                        addVerticalScrollText(recommend);
-//                                        break;
-//                                case Recommond.ComponentType.TYPE_PANEL:
-//                                    addSpecialPanel(recommend);
-//                                    break;
-//                            }
-//
-//                        }
+                        for(int i =0 ;i<recommondList.size();i++){
+                            Recommond recommend = recommondList.get(i);
 
-                        addBanner(recommondList.get(0));
-                        addEnter(recommondList.get(1));
-                        addVerticalScrollText(recommondList.get(2));
-                        addSpecialPanel(recommondList.get(3));
-                        addSpecialPanel(recommondList.get(4));
+                           //根据ComponentType判断要显示什么样的item布局
+                            switch (recommend.getComponentType()){
+                                case Recommond.ComponentType.TYPE_Banner:
+                                      addBanner(recommend);
+                                        break;
+                                case Recommond.ComponentType.TYPE_ENTER:
+                                       addEnter(recommend);
+                                        break;
+                                case Recommond.ComponentType.TYPE_SCROLL_NEW://滚动快讯
+                                        addVerticalScrollText(recommend);
+                                        break;
+                                case Recommond.ComponentType.TYPE_PANEL:
+                                    addSpecialPanel(recommend);
+                                    break;
+                                case Recommond.ComponentType.TYPE_GUESS_YOU_WHAT:
+                                    addGuessPanel(recommend);
+                                    break;
+                                case Recommond.ComponentType.TYPE_SINGLEBANNWE:
+                                    addSingleBanner(recommend);
+                                    break;
+                            }
+
+                        }
+
+//                        addBanner(recommondList.get(0));
+//                        addEnter(recommondList.get(1));
+//                        addVerticalScrollText(recommondList.get(2));
+//                        addSpecialPanel(recommondList.get(3));
+//                        addSpecialPanel(recommondList.get(4));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -116,7 +125,7 @@ public class RecommendFragment extends BaseFragment {
             LogUtil.w("广告画廊");
 
             indexViewLine = new IndexViewLine(getActivity());
-            indexViewLine.setBackgroundColor(Color.GRAY);
+            //indexViewLine.setBackgroundColor(Color.GRAY);
 
 
 
@@ -259,6 +268,25 @@ public class RecommendFragment extends BaseFragment {
         llroot.addView(specialPannel);
     }
 
+    /*添加猜你猜你喜欢面板*/
+
+    private void addGuessPanel(Recommond reconmend){
+        GuessPannel guessPannel = new GuessPannel(getContext(),reconmend);
+        llroot.addView(guessPannel);
+    }
+
+    /*增加一个单栏的banner*/
+    private void addSingleBanner(Recommond recommond){
+        ImageView singleBanner = new ImageView(getContext());
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        singleBanner.setLayoutParams(params);
+        singleBanner.setPadding(30,20,20,30);
+        List<Special> special = recommond.getDataList();
+        ImageLoader.getInstance().displayImage(special.get(0).getPic(),singleBanner, ImageUtil.getDefaultOption());
+
+        llroot.addView(singleBanner);
+
+    }
     @Override
     protected void initEvents() {
 

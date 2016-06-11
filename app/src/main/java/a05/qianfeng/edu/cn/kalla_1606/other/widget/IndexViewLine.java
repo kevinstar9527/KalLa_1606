@@ -76,13 +76,14 @@ public class IndexViewLine extends View {
         /*消除锯齿？*/
         paint.setAntiAlias(true);
      //   paint.setStrokeWidth(10);
+        paint.setStrokeWidth(getHeight());
         for(int i=0;i<count;i++){
 
             if(i==currIndex){
                 paint.setColor(selectorColor);
                 /*填充满，不然会空心*/
                 paint.setStyle(Paint.Style.FILL);
-                paint.setStrokeWidth(getHeight());
+
             }else{
                 paint.setColor(defaultColor);
                 /*设置为空心*/

@@ -2,6 +2,8 @@ package a05.qianfeng.edu.cn.kalla_1606.mine.ui;
 
 import android.annotation.SuppressLint;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,7 +12,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import a05.qianfeng.edu.cn.kalla_1606.R;
+import a05.qianfeng.edu.cn.kalla_1606.discover.ui.RadioFragment;
+import a05.qianfeng.edu.cn.kalla_1606.discover.ui.RecommendFragment;
+import a05.qianfeng.edu.cn.kalla_1606.discover.ui.TypeFragment;
 import a05.qianfeng.edu.cn.kalla_1606.other.ui.BaseFragment;
 import a05.qianfeng.edu.cn.kalla_1606.other.ui.HomeActivity;
 
@@ -24,6 +32,7 @@ public class MyRadioFragment extends BaseFragment {
     private TabLayout tabLayout;
     private Toolbar toolbar;
     private ImageView message;
+    private ViewPager viewPager;
 
     public  MyRadioFragment(){}
 
@@ -54,10 +63,23 @@ public class MyRadioFragment extends BaseFragment {
         tabLayout.addTab(tabLayout.newTab().setText("订阅"));
         tabLayout.addTab(tabLayout.newTab().setText("收藏"));
 
+        //viewPager = (ViewPager) root.findViewById(R.id.viewPager);
+
+
+
     }
 
     @Override
     protected void initData() {
+
+        List<Fragment> list = new ArrayList<>();
+        list.add(new RecommendFragment());
+        list.add(new TypeFragment());
+        list.add(new RadioFragment());
+
+
+//        CommonFragmentPagerAdapter viewPagerAdapter = new CommonFragmentPagerAdapter(getChildFragmentManager(), list);
+//        viewPager.setAdapter(viewPagerAdapter);
 
     }
 

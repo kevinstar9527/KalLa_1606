@@ -22,11 +22,11 @@ public class SpecialPannel extends LinearLayout {
     public SpecialPannel(Context context,Recommond recommond) {
         super(context);
         inflate(context, R.layout.widget_special_panel,this);
-        textView = (TextView) findViewById(R.id.special_pannel_tv);
+        textView = (TextView) findViewById(R.id.guess_pannel_tv);
         tvMove = (TextView) findViewById(R.id.special_pannel_tv_more);
         setRecommend(recommond);
         //左下右上
-        setPadding(30,30,30,30);
+        setPadding(20,20,30,30);
         setOrientation(VERTICAL);
     }
 
