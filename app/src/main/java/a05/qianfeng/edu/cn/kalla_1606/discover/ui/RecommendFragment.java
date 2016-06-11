@@ -69,32 +69,32 @@ public class RecommendFragment extends BaseFragment {
                         //用Gson解析list
                         List<Recommond> recommondList = Recommond.arrayRecommondFromData(dataList.toString());
                         LogUtil.e("reconmendList.seze = "+recommondList.size());
-                        for(int i =0 ;i<recommondList.size();i++){
-                            Recommond recommend = recommondList.get(i);
+//                        for(int i =0 ;i<recommondList.size();i++){
+//                            Recommond recommend = recommondList.get(i);
+//
+//                           //根据ComponentType判断要显示什么样的item布局
+//                            switch (recommend.getComponentType()){
+//                                case Recommond.ComponentType.TYPE_Banner:
+//                                      addBanner(recommend);
+//                                        break;
+//                                case Recommond.ComponentType.TYPE_ENTER:
+//                                       addEnter(recommend);
+//                                        break;
+//                                case Recommond.ComponentType.TYPE_SCROLL_NEW://滚动快讯
+//                                        addVerticalScrollText(recommend);
+//                                        break;
+//                                case Recommond.ComponentType.TYPE_PANEL:
+//                                    addSpecialPanel(recommend);
+//                                    break;
+//                            }
+//
+//                        }
 
-                           //根据ComponentType判断要显示什么样的item布局
-                            switch (recommend.getComponentType()){
-                                case Recommond.ComponentType.TYPE_Banner:
-                                       addBanner(recommend);
-                                        break;
-                                case Recommond.ComponentType.TYPE_ENTER:
-                                       addEnter(recommend);
-                                        break;
-                                case Recommond.ComponentType.TYPE_SCROLL_NEW://滚动快讯
-                                        addVerticalScrollText(recommend);
-                                        break;
-                                case Recommond.ComponentType.TYPE_PANEL:
-                                    addSpecialPanel(recommend);
-                                    break;
-                            }
-
-                        }
-
-//                        addBanner(recommondList.get(0));
-//                        addEnter(recommondList.get(1));
-//                        addVerticalScrollText(recommondList.get(2));
-//                        addSpecialPanel(recommondList.get(3));
-//                        addSpecialPanel(recommondList.get(4));
+                        addBanner(recommondList.get(0));
+                        addEnter(recommondList.get(1));
+                        addVerticalScrollText(recommondList.get(2));
+                        addSpecialPanel(recommondList.get(3));
+                        addSpecialPanel(recommondList.get(4));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -114,20 +114,20 @@ public class RecommendFragment extends BaseFragment {
             //开始动态添加
             LogUtil.e("开始动态添加");
             LogUtil.w("广告画廊");
-            /*设置导航横线*/
+
             indexViewLine = new IndexViewLine(getActivity());
             indexViewLine.setBackgroundColor(Color.GRAY);
 
 
-            /*为导航效果设置宽高*/
+
             int widthLine =ViewGroup.LayoutParams.MATCH_PARENT;
             int heightLine = 10;
             LinearLayout.LayoutParams rootParamsLine = new LinearLayout.LayoutParams(widthLine,heightLine);
             indexViewLine.setLayoutParams(rootParamsLine);
-            /*得到ViewPager中的页面数*/
+            //得到ViewPager中的页面数
             indexViewLine.setCount(reconmend.getDataList().size());
 
-            /*测试导航横线使用*/
+            //测试导航横线使用
 
             indexViewLine.setCurrIndex(0);
 
@@ -166,7 +166,6 @@ public class RecommendFragment extends BaseFragment {
             CommonImageAdapter imageAdapter = new CommonImageAdapter(imageViews,urls);
             veiwPager.setAdapter(imageAdapter);
 
-            /*为ViewPager添加动态效果*/
 
             veiwPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override

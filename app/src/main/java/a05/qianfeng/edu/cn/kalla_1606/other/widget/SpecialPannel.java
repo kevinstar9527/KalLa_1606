@@ -2,6 +2,7 @@ package a05.qianfeng.edu.cn.kalla_1606.other.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -26,7 +27,7 @@ public class SpecialPannel extends LinearLayout {
         setRecommend(recommond);
         //左下右上
         setPadding(30,30,30,30);
-        setOrientation(HORIZONTAL);
+        setOrientation(VERTICAL);
     }
 
     public SpecialPannel(Context context, AttributeSet attrs) {
@@ -42,9 +43,12 @@ public class SpecialPannel extends LinearLayout {
         }
         List<Special> dataList = recommend.getDataList();
         if(dataList.size()==3){
+
             SpecialLayout specialLayout = new SpecialLayout(getContext(),dataList);
             addView(specialLayout);
         }else{
+
+            Log.e("print","这里没执行到？");
             List<Special> special03 = dataList.subList(0, 3);
             SpecialLayout specialLayout6 = new SpecialLayout(getContext(),special03);
 

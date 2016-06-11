@@ -19,7 +19,7 @@ public class SpecialLayout extends LinearLayout {
         super(context);
         initViews(context);
         this.list= listItem;
-        setSpecialList(listItem);
+        setSpecialList();
     }
 
     private void initViews(Context context) {
@@ -32,8 +32,8 @@ public class SpecialLayout extends LinearLayout {
 
     }
 
-    /*显示内容*/
-    public void setSpecialList(List<Special> list){
+      /*显示内容*/
+    public void setSpecialList(){
 
         si1.setSpecial(list.get(0));
         si2.setSpecial(list.get(1));

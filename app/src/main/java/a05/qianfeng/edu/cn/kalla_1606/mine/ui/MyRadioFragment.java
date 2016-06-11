@@ -49,10 +49,10 @@ public class MyRadioFragment extends BaseFragment {
         activity.setSupportActionBar(toolbar);
 
         message = (ImageView) root.findViewById(R.id.myradio_iv);
-//        tabLayout = (TabLayout) root.findViewById(R.id.myradio_tabLayout);
-//        tabLayout.addTab(tabLayout.newTab().setText("收听历史"));
-//        tabLayout.addTab(tabLayout.newTab().setText("订阅"));
-//        tabLayout.addTab(tabLayout.newTab().setText("收藏"));
+        tabLayout = (TabLayout) root.findViewById(R.id.tabLayout);
+        tabLayout.addTab(tabLayout.newTab().setText("收听历史"));
+        tabLayout.addTab(tabLayout.newTab().setText("订阅"));
+        tabLayout.addTab(tabLayout.newTab().setText("收藏"));
 
     }
 

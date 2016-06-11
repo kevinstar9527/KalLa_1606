@@ -2,6 +2,7 @@ package a05.qianfeng.edu.cn.kalla_1606.other.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,7 +25,7 @@ public class SpecialItem extends RelativeLayout {
     public SpecialItem(Context context,Special special){
 
         super(context);
-        //initView(context);
+        initView(context);
         setSpecial(special);
     }
 
@@ -47,6 +48,10 @@ public class SpecialItem extends RelativeLayout {
         tvRename.setText(special.getDes());
         tvDes.setText(special.getRname());
         ImageLoader.getInstance().displayImage(special.getPic(),ivContent, ImageUtil.getDefaultOption());
+        if(ivContent!=null){
+            Log.e("ivContent","有图片啊");
+        }
+
     }
     public SpecialItem(Context context, AttributeSet set){
 
