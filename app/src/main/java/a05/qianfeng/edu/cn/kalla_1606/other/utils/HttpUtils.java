@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -44,6 +45,9 @@ public class HttpUtils {
             //建立连接
             conn.connect();
             //获取返回码
+
+
+
             int responseCode = conn.getResponseCode();
             //如果请求成功了
             if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -192,7 +196,7 @@ public class HttpUtils {
     * dir 文件名
     * rename 文件名
     * */
-    public static File downLoadBitmap(String httpUrl,File dir,String rename){
+    public static File downLoadEverything(String httpUrl, File dir, String rename,KaoLaTask.IDownlaodListener listener){
 
             InputStream inputStream =null;
            // InputStreamReader inputStreamReader = null;
@@ -226,12 +230,37 @@ public class HttpUtils {
                     //定义（文件）下载速度
                     byte[] buff = new byte[256];
                     int read= -1;
+                    int contentLength = conn.getContentLength();
+                    /*已下载*/
+                    int downLoad= 0;
+                    if (listener!=null) {
+                        /*开始下载*/
+                        listener.start();
+                    }
                     while((read=inputStream.read(buff))!=-1){
 
+                        downLoad+=read;
+                        double d =downLoad*100.0/contentLength;
+                        /*取两位小数*/
+                        BigDecimal bigDecimal = new BigDecimal(d).setScale(2,BigDecimal.ROUND_HALF_UP);//四舍五入保留小数点后两位
+                        float floatValue = bigDecimal.floatValue();
+    /*
+                        得到更新的进度值
+    */
+                        if (listener!=null) {
+                            //更新进度
+                            listener.upgradeProgress(floatValue);
+                        }
                         fileOutputStream.write(buff,0,read);
                         fileOutputStream.flush();//注意
                     }
-                    LogUtil.w("下载成功！");
+
+                    if (listener!=null) {
+                        //下载成功
+                        LogUtil.w("下载成功！");
+                        listener.onCompleted(file);
+                    }
+
                     return file;
 
                 }
@@ -241,7 +270,7 @@ public class HttpUtils {
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                //如果inputStream不为空则其他也不为空
+
                 if (inputStream!= null) {
                     try {
                         inputStream.close();
@@ -253,6 +282,9 @@ public class HttpUtils {
                 }
             }
             Log.e("HttpUtils", "请求失败");
+        if (listener!=null) {
+            listener.error("监听失败");
+        }
             return null;
         }
 }

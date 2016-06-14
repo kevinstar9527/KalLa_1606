@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView
+        android:padding="10dp"
         android:layout_margin="10dp"
         android:src="@color/public_red"
         android:id="@+id/guess_iv"

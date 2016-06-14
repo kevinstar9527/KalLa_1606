@@ -23,5 +23,16 @@
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/public_gray</item>
     </style>
+    <style name="radio_lanmu">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    <!--更新对话框-->
+    <style name="dialog_upgrate" parent="android:Theme.Holo.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+
+    </style>
 
 </resources>

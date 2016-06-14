@@ -54,7 +54,7 @@ public class GuessPannel extends LinearLayout {
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         /*设置方向为垂直*/
-        manager.setOrientation(VERTICAL);
+        manager.setOrientation(LinearLayout.VERTICAL);
         recyclerView.setLayoutManager(manager);
 
         GuessAdapter adapter = new GuessAdapter(getContext(),dataList);

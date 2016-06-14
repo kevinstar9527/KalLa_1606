@@ -46,7 +46,7 @@ public class EnterAdpater extends  RecyclerView.Adapter<EnterAdpater.EnterViewHo
     @Override
     public void onBindViewHolder(EnterAdpater.EnterViewHoder holder, int position) {
 
-        ImageLoader.getInstance().displayImage(list.get(position).getPic(),holder.imageView, ImageUtil.getDefaultOption());
+        ImageLoader.getInstance().displayImage(list.get(position).getPic(),holder.imageView, ImageUtil.getRoundCircleOption());
 
 
     }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+ <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/guess_pannel_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="智能精选"
+            android:textSize="24sp"
+            android:textColor="@android:color/black"
+            />
+        <TextView
+            android:id="@+id/special_pannel_tv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="更多"
+            android:textSize="18sp"
+            android:layout_alignParentRight="true"
+            android:drawableRight="@drawable/arrow_right"
+            android:drawablePadding="10dp"
+            android:textColor="@color/public_gray"
+            />
+        <View
+            android:id="@+id/line"
+            android:layout_below="@id/guess_pannel_tv"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            style="@style/horizontal_line"
+        ></View>
+     <android.support.v7.widget.RecyclerView
+         android:id="@+id/radio_recycle"
+         android:layout_below="@id/line"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         ></android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,6 +1,8 @@
 package a05.qianfeng.edu.cn.kalla_1606.discover.ui;
 
+import android.graphics.Color;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,6 +29,7 @@ import a05.qianfeng.edu.cn.kalla_1606.other.ui.BaseFragment;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.ImageUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.KaoLaTask;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.LogUtil;
+import a05.qianfeng.edu.cn.kalla_1606.other.widget.CornerPannel;
 import a05.qianfeng.edu.cn.kalla_1606.other.widget.GuessPannel;
 import a05.qianfeng.edu.cn.kalla_1606.other.widget.IndexViewLine;
 import a05.qianfeng.edu.cn.kalla_1606.other.widget.SpecialPannel;
@@ -39,6 +42,7 @@ public class RecommendFragment extends BaseFragment {
 
     private LinearLayout llroot;
     private IndexViewLine indexViewLine;
+    private SwipeRefreshLayout refresh;
 
 
     @Override
@@ -50,12 +54,21 @@ public class RecommendFragment extends BaseFragment {
     protected void initViews() {
         llroot = (LinearLayout) root.findViewById(R.id.recommend_banner);
 
+        refresh = (SwipeRefreshLayout)root.findViewById(R.id.refresh);
+        /*设置颜色*/
+        /*最多只能设置四种颜色*/
+        /*设置刷新颜色*/
+        refresh.setColorSchemeColors(new int[]{Color.RED,Color.GRAY,Color.BLUE});
 
     }
 
     @Override
     protected void initData() {
 
+        refreshData();
+    }
+
+    private void refreshData() {
         DiscoverUtil.getRecommend(new KaoLaTask.IRequestCallBack() {
             @Override
             public void success(Object object) {
@@ -72,6 +85,8 @@ public class RecommendFragment extends BaseFragment {
                         //用Gson解析list
                         List<Recommond> recommondList = Recommond.arrayRecommondFromData(dataList.toString());
                         LogUtil.e("reconmendList.seze = "+recommondList.size());
+                        /*清楚上一次的视图*/
+                        llroot.removeAllViews();
                         for(int i =0 ;i<recommondList.size();i++){
                             Recommond recommend = recommondList.get(i);
 
@@ -84,7 +99,7 @@ public class RecommendFragment extends BaseFragment {
                                        addEnter(recommend);
                                         break;
                                 case Recommond.ComponentType.TYPE_SCROLL_NEW://滚动快讯
-                                        addVerticalScrollText(recommend);
+                                        //addVerticalScrollText(recommend);
                                         break;
                                 case Recommond.ComponentType.TYPE_PANEL:
                                     addSpecialPanel(recommend);
@@ -95,9 +110,14 @@ public class RecommendFragment extends BaseFragment {
                                 case Recommond.ComponentType.TYPE_SINGLEBANNWE:
                                     addSingleBanner(recommend);
                                     break;
+                                case Recommond.ComponentType.TYPE_ANTOR_HOt:
+                                    addANTORHOT(recommend);
                             }
 
                         }
+                        refresh.setRefreshing(false);
+
+                        /*下面这些可以用来做测试使用*/
 
 //                        addBanner(recommondList.get(0));
 //                        addEnter(recommondList.get(1));
@@ -117,14 +137,21 @@ public class RecommendFragment extends BaseFragment {
         });
     }
 
-        private void addBanner(Recommond reconmend){
+    private void addANTORHOT(Recommond recommend) {
+
+        CornerPannel corner = new CornerPannel(getContext(),recommend);
+        llroot.addView(corner);
+
+    }
+
+    private void addBanner(Recommond reconmend){
 
 
             //开始动态添加
             LogUtil.e("开始动态添加");
             LogUtil.w("广告画廊");
 
-            indexViewLine = new IndexViewLine(getActivity());
+            indexViewLine = new IndexViewLine(getContext());
             //indexViewLine.setBackgroundColor(Color.GRAY);
 
 
@@ -184,6 +211,7 @@ public class RecommendFragment extends BaseFragment {
 
                 @Override
                 public void onPageSelected(int position) {
+
                     indexViewLine.setCurrIndex(position);
                 }
 
@@ -290,7 +318,12 @@ public class RecommendFragment extends BaseFragment {
     @Override
     protected void initEvents() {
 
-
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshData();
+            }
+        });
 
     }
 }

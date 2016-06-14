@@ -14,4 +14,11 @@ public class Contants {
     * 用来保存是否第一次使用应用的值
     * */
     public static final String FLAG_FIRST_USED_VALUT = "flag_first_used_value";
+
+    public final static String flag_result_message = "message";
+    public final static String flag_result_success = "success";
+    public final static String flag_result_datalist = "dataList";
+    public final static String flag_result_dataresult = "result";
+
+
 }

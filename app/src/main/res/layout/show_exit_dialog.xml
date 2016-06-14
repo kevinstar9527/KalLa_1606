@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
-
     <TextView
-        android:layout_width="wrap_content"
+        android:padding="10dp"
+        android:background="@color/public_gray"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="提示"
@@ -14,28 +14,40 @@
         android:id="@+id/content"
         android:gravity="left"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_below="@id/textHead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxLines="2"
         android:text="退出后不能收听，确定要退出吗?"/>
+    <LinearLayout
+        android:id="@+id/dialog_llroot"
+        android:layout_below="@id/content"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <Button
+        android:layout_margin="5dp"
+        android:background="@drawable/corner_shape_iv"
         android:id="@+id/exit"
-        android:layout_below="@id/content"
-        android:text="退出"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/radio_lanmu"
+        android:text="退出" />
     <Button
+        android:layout_margin="5dp"
+        android:background="@drawable/corner_shape_iv"
         android:id="@+id/smallest"
-        android:layout_below="@id/content"
-        android:layout_toRightOf="@id/exit"
-        android:text="最小化"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        style="@style/radio_lanmu"
+        android:text="最小化" />
     <Button
+        android:layout_margin="5dp"
+        android:background="@drawable/corner_shape_iv_cancel"
+        style="@style/radio_lanmu"
         android:id="@+id/cancel"
-        android:layout_toRightOf="@id/smallest"
-        android:layout_below="@id/content"
-        android:text="取消"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:text="取消" />
+    </LinearLayout>
+    <View
+        android:layout_below="@id/dialog_llroot"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
 </RelativeLayout>

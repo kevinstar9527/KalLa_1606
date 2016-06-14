@@ -1,5 +1,6 @@
 package a05.qianfeng.edu.cn.kalla_1606.other.ui;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -200,7 +201,11 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-
+    private void showExitDialog (){
+        final Dialog dialog = new Dialog(this,R.style.dialog_upgrate);
+        /*为对话框写布局*/
+       // dialog.setContentView(R.layout.);
+    }
 
 }
 

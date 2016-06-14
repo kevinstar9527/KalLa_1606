@@ -1,5 +1,8 @@
 package a05.qianfeng.edu.cn.kalla_1606.other.utils;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Environment;
 
 import java.io.File;
@@ -12,6 +15,10 @@ import java.io.File;
 public class FileUtil {
     /*应用目录下的image目录*/
 public  static final File dir_image = getDir("image");
+    public static final File dir_apk = getDir("apk");
+    public static final File dir_cache = getDir("cache");
+
+
     public static File getSDcardDir(){
 
         //获取一下sd卡挂载状态
@@ -54,6 +61,22 @@ public  static final File dir_image = getDir("image");
 
     public static String getFileNameByHashCode(String url){
         return ""+url.hashCode();
+    }
+
+    /**
+     * 安装apk
+     *
+     * @param context
+     * @param file
+     */
+    public static void installApk(Context context, File file) {
+        Intent intent = new Intent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setAction(Intent.ACTION_VIEW);
+        /*解包*/
+        String type = "application/vnd.android.package-archive";
+        intent.setDataAndType(Uri.fromFile(file), type);
+        context.startActivity(intent);
     }
 
 }

@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,6 +23,7 @@ import a05.qianfeng.edu.cn.kalla_1606.R;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.FileUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.HttpUtils;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.KaoLaTask;
+import a05.qianfeng.edu.cn.kalla_1606.other.utils.KaoLaTranSformation;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.LogUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.OtherHttpUtils;
 
@@ -29,7 +32,7 @@ import a05.qianfeng.edu.cn.kalla_1606.other.utils.OtherHttpUtils;
  */
 public class BannerActivity extends AppCompatActivity {
     private ImageView imageView;
-    private  Timer timer;
+    private Timer timer;
     private TimerTask task ;//一个线程
     private int time=3;
     @Override
@@ -63,7 +66,7 @@ public class BannerActivity extends AppCompatActivity {
         一秒钟后每隔一秒钟开始执行，并且每隔一秒钟执行一次
         线程调度
 */
-        timer.schedule(task, 1000, 1000);
+        timer.schedule(task, 3000, 1000);
         //测试新的封装类
 
         OtherHttpUtils.getBanner(new KaoLaTask.IRequestCallBack() {
@@ -77,7 +80,15 @@ public class BannerActivity extends AppCompatActivity {
                     JSONObject result = root.getJSONObject("result");
                     String img = result.getString("img");
                     LogUtil.w("img = " + img);
-                    showImage(img);
+                    //showImage(img);
+                    /*Picasso网络请求*/
+                    Picasso.with(BannerActivity.this)
+                            .load(img)//下载图片
+                            .error(R.drawable.ic_launcher)//设置默认图片
+                            .placeholder(R.drawable.album_hidden)//正在加载中显示的图片
+                            .resize(200,300)//把图片显示多大
+                                .transform(new KaoLaTranSformation())
+                            .into(imageView);//到那个控件上
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -108,7 +119,7 @@ public class BannerActivity extends AppCompatActivity {
 //                        File image = new File(FileUtil.dir_image,"banner.jpg");
 //                        //判断这个图片有没有下载过，如果存在表示下载过
 //                        if(!image.exists()) {
-//                            image = HttpUtils.downLoadBitmap(img, FileUtil.dir_image, "banner.jpg");
+//                            image = HttpUtils.downLoadEverything(img, FileUtil.dir_image, "banner.jpg");
 //                        }
 //
 //                        final Bitmap bitmap = BitmapFactory.decodeFile(image.getAbsolutePath());
@@ -143,7 +154,7 @@ public class BannerActivity extends AppCompatActivity {
                 @Override
                 public Object doRequest() {
                     //下载图片
-                    return HttpUtils.downLoadBitmap(img, FileUtil.dir_image, rename);
+                    return HttpUtils.downLoadEverything(img, FileUtil.dir_image, rename,null);
                 }
             };
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    >
+    <TextView
+        android:drawableTop="@drawable/selector_discover_radio_lanmu_country"
+        android:text="国家台"
+        style="@style/radio_lanmu" />
+    <TextView
+        android:drawableTop="@drawable/selector_discover_radio_lanmu"
+        android:text="省市台"
+        style="@style/radio_lanmu" />
+    <TextView
+        android:drawableTop="@drawable/selector_discover_radio_network"
+        android:text="网络台"
+        style="@style/radio_lanmu"/>
+    <TextView
+        android:drawableTop="@drawable/selector_radio_smart"
+        android:text="智能台"
+        style="@style/radio_lanmu" />
+</LinearLayout>

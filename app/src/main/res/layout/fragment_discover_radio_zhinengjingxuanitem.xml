@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_margin="10dp"
+        android:src="@color/public_red"
+        android:id="@+id/zn_iv"
+        android:layout_width="130dp"
+        android:layout_height="130dp" />
+    <ImageView
+       android:layout_margin="25dp"
+        android:src="@drawable/btn_recommend_play_normal"
+        android:id="@+id/special_item_des_iv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@id/zn_iv"
+        android:layout_alignRight="@id/zn_iv"/>
+    <TextView
+        android:id="@+id/title"
+        android:layout_toRightOf="@id/zn_iv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="王菲.fm"
+        android:layout_marginTop="25dp" />
+    <TextView
+        android:id="@+id/content"
+        android:layout_toRightOf="@id/zn_iv"
+        android:layout_below="@id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="宁愿相信我们前世有约,今生的爱情"
+        android:textColor="@android:color/darker_gray"
+        android:drawableRight="@drawable/arrow_right"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="25dp" />
+    <TextView
+        android:layout_below="@id/content"
+        android:id="@+id/detail"
+        android:layout_toRightOf="@id/zn_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="9.9w"
+        android:textColor="@android:color/darker_gray"
+        android:drawableLeft="@drawable/ic_detail_item_listen"
+        android:drawablePadding="2dp"
+        android:layout_marginTop="18dp"
+       />
+    <TextView
+        android:layout_below="@id/content"
+        android:id="@+id/addTomorrow"
+        android:layout_toRightOf="@id/detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4.4k"
+        android:textColor="@android:color/darker_gray"
+        android:drawableLeft="@drawable/ic_detail_item_listen"
+        android:drawablePadding="2dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="45dp"
+        />
+
+</RelativeLayout>

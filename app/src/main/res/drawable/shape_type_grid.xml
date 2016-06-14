@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--圆角-->
+    <corners android:radius="5dp"></corners>
+    <stroke android:width="1dp" android:color="@color/public_gray"></stroke>
+    <!--实心-->
+    <solid android:color="@android:color/white"></solid>
+    <!--渐变色-->
+    <!--angle角度，要设置开始中间，结束颜色，且如果还是实心不需要渐变色-->
+   <!-- <gradient
+        android:centerColor="@android:color/holo_blue_light"
+        android:startColor="@android:color/holo_green_light"
+        android:endColor="@android:color/holo_green_light"
+        android:angle="45"
+        ></gradient>-->
+
+</shape>

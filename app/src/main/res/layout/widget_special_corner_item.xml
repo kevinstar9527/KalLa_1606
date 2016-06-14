@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+    android:padding="10dp"
+    android:src="@drawable/ic_launcher"
+    android:layout_centerHorizontal="true"
+    android:id="@+id/corner_iv"
+    android:layout_width="130dp"
+    android:layout_height="130dp" />
+    <TextView
+        android:layout_below="@id/corner_iv"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/corner_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="情感自愈系"/>
+    <TextView
+
+        android:layout_centerHorizontal="true"
+        android:id="@+id/corner_itme_content"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/corner_item_title"
+        android:maxLines="4"
+        android:textColor="@color/colorAccent"
+        android:text="女人的路比格局更重要"
+        />
+
+
+</RelativeLayout>
