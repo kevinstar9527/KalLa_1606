@@ -52,7 +52,7 @@ public class Player1Activity extends AppCompatActivity implements MediaPlayer.On
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_player);
+        setContentView(R.layout.activity_player1);
         mp3Url = getIntent().getStringExtra(JumpManager.TAG_MP3_URL);
         mediaPlayer.setOnPreparedListener(this);
         mediaPlayer.setOnBufferingUpdateListener(this);

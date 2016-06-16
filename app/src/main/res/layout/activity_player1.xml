@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--最底层的模糊图片-->
+    <ImageView
+        android:background="@android:color/holo_red_dark"
+        android:id="@+id/player1_iv_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <!--标题栏-->
+     <RelativeLayout
+         android:background="@android:color/holo_green_dark"
+        android:id="@+id/player1_top_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_title_bar_distance">
+         <ImageView
+             android:layout_marginLeft="15dp"
+             android:clickable="true"
+             android:src="@drawable/selector_btn_back"
+             android:layout_centerVertical="true"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+         <TextView
+             android:text="订阅"
+             android:textColor="@android:color/white"
+             android:drawableLeft="@drawable/ic_chat_add_default"
+             android:layout_alignParentRight="true"
+             android:layout_marginRight="15dp"
+             android:layout_centerVertical="true"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+           <include
+
+               layout="@layout/activity_player_toolbar"
+               android:layout_height="100dp"
+               android:layout_width="130dp"
+               android:layout_centerHorizontal="true"
+               />
+
+    </RelativeLayout>
+    <!--最下面的五个按钮-->
+    <LinearLayout
+
+        android:background="@android:color/holo_green_dark"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:id="@+id/player1_bottom_ll"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <ImageView
+            android:padding="15dp"
+            android:id="@+id/btn_love"
+            android:src="@drawable/btn_player_good_normal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <ImageView
+            android:padding="15dp"
+            android:src="@drawable/btn_download_normal"
+            android:id="@+id/btn_download"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <ImageView
+            android:src="@drawable/btn_download_press"
+            android:id="@+id/btn_push"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/btn_share"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/btn_more"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <!--中间的内容夹在中间填充屏幕-->
+    <LinearLayout
+        android:layout_below="@id/player1_top_rl"
+        android:background="#ffff00"
+        android:layout_marginBottom="80dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <!--层叠效果-->
+        <!--中间的内容-->
+        <include layout="@layout/layout_palyer" />
+    </LinearLayout>
+
+</RelativeLayout>

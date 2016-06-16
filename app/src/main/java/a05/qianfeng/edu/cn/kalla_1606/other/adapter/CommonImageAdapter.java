@@ -1,5 +1,7 @@
 package a05.qianfeng.edu.cn.kalla_1606.other.adapter;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,9 +9,13 @@ import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.io.File;
 import java.util.List;
 
+import a05.qianfeng.edu.cn.kalla_1606.other.utils.FileUtil;
+import a05.qianfeng.edu.cn.kalla_1606.other.utils.HttpUtils;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.ImageUtil;
+import a05.qianfeng.edu.cn.kalla_1606.other.utils.KaoLaTask;
 
 /**
  * Created by Administrator on 2016/6/8.
@@ -43,12 +49,44 @@ public class CommonImageAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        ImageView imageView = viewList.get(position);
+    public Object instantiateItem(final ViewGroup container, int position) {
+        final ImageView imageView = viewList.get(position);
         container.addView(imageView);
+        String url = urlList.get(position);
 
         ImageLoader imageLoader =  ImageLoader.getInstance();
-        imageLoader.displayImage(urlList.get(position),imageView,ImageUtil.getDefaultOption());
+        imageLoader.displayImage(urlList.get(position),imageView, ImageUtil.getDefaultOption());
+
+        HttpUtils.downLoadEverything(url, FileUtil.dir_image, FileUtil.getFileNameByHashCode(url), new KaoLaTask.IDownlaodListener() {
+            @Override
+            public void upgradeProgress(float progress) {
+
+            }
+
+            @Override
+            public void onCompleted(File file) {
+                Bitmap tempBitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+                int width = tempBitmap.getWidth();
+                int height = tempBitmap.getHeight();
+                final Bitmap target = Bitmap.createBitmap(tempBitmap,0,height/3,width,height/3);
+                container.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        imageView.setImageBitmap(target);
+                    }
+                });
+            }
+
+            @Override
+            public void error(String msg) {
+
+            }
+
+            @Override
+            public void start() {
+
+            }
+        });
 
         return imageView;
     }

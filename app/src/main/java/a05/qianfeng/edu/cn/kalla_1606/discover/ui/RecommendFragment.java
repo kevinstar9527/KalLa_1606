@@ -178,6 +178,9 @@ public class RecommendFragment extends BaseFragment {
             //为Viewpager设置宽高
             LinearLayout.LayoutParams rootParams = new LinearLayout.LayoutParams(width,height);
             veiwPager.setLayoutParams(rootParams);
+            veiwPager.setPageMargin(50);//设置每一页之间的间隔
+            veiwPager.setOffscreenPageLimit(2);//设置缓存页面
+            //veiwPager.setPageTransformer(true,new Kao);//页面修改
 
             //开始往ViewPager中动态添加控件
             List<ImageView> imageViews = new ArrayList<>();
