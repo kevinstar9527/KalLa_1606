@@ -17,6 +17,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+//正式打包时，避免提示错误
+    lintOptions{
+        abortOnError false;
+    }
+
+
 }
 
 dependencies {
@@ -31,4 +38,5 @@ dependencies {
     compile project(':PullToRefresh-library')
     compile 'com.squareup.okhttp3:okhttp-apache:3.3.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.jakewharton:butterknife:7.0.1'
 }

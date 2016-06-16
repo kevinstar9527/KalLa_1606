@@ -31,6 +31,9 @@
 
         <!-- 主页面 -->
         <activity android:name=".other.ui.HomeActivity" />
+        <!--web页面浏览器页面-->
+        <activity android:name=".other.ui.WebActivity"/>
+        <activity android:name=".discover.ui.Player1Activity"/>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.

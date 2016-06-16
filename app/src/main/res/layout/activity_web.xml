@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<!--标题栏-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+        <TextView
+            android:id="@+id/topTitle"
+            android:textSize="?attr/textAppearanceSearchResultTitle"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="民国往事，那些风雅故人"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.Toolbar>
+
+    <ProgressBar
+        android:id="@+id/web_pb"
+        android:layout_width="match_parent"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:progressDrawable="@drawable/layer_progress"
+        android:layout_height="3dp" />
+ <WebView
+     android:id="@+id/web_view"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+ </WebView>
+
+</LinearLayout>

@@ -43,6 +43,15 @@ public class CornerAchorImageItem extends RelativeLayout {
         ImageLoader.getInstance().displayImage(special.getAvatar(),iv, ImageUtil.getCircleOption());
         Log.e("msg",special.getNickName());
         title.setText(special.getNickName());
+        switch (special.getGender()){
+            case 1:
+                title.setCompoundDrawables(null,getResources().getDrawable(R.drawable.woman),null,null);
+                break;
+            case 0:
+                title.setCompoundDrawables(null,getResources().getDrawable(R.drawable.man),null,null);
+                break;
+
+        }
        // Log.e("msg",special.getLikedNum());
         content.setText(special.getRecommendReson());
 

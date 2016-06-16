@@ -4,18 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
+     android:padding="10dp"
     android:layout_centerHorizontal="true"
-    android:background="@color/public_red"
     android:id="@+id/special_iv"
     android:layout_width="130dp"
     android:layout_height="130dp" />
     <TextView
+        android:maxLines="1"
+        android:ellipsize="end"
         android:id="@+id/speical_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/special_iv"
         android:layout_alignLeft="@id/special_iv"
         android:layout_margin="10dp"
+        android:textColor="@android:color/white"
         android:text="情感自愈系"/>
     <ImageView
         android:layout_margin="25dp"
@@ -34,7 +37,6 @@
         android:layout_below="@id/special_iv"
         android:layout_margin="10dp"
         android:maxLines="2"
-        android:textColor="@color/colorAccent"
         android:text="女人的路比格局更重要"
         />
 

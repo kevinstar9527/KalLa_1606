@@ -2,7 +2,6 @@ package a05.qianfeng.edu.cn.kalla_1606.discover.ui;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,7 +12,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +23,6 @@ import a05.qianfeng.edu.cn.kalla_1606.discover.bean.TypeTopRoot;
 import a05.qianfeng.edu.cn.kalla_1606.discover.util.DiscoverUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.ui.BaseFragment;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.Contants;
-import a05.qianfeng.edu.cn.kalla_1606.other.utils.FileUtil;
-import a05.qianfeng.edu.cn.kalla_1606.other.utils.HttpUtils;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.KaoLaTask;
 import a05.qianfeng.edu.cn.kalla_1606.other.widget.TypeTopLayout;
 
@@ -45,6 +41,7 @@ public class TypeFragment extends BaseFragment {
     List<Bitmap>bitmaps = new ArrayList<>();
     TypeTopLayout typeTop;
     LinearLayout llroot;
+    private TypeTopLayout topLayout;
 
     @Override
     protected int getLayoutId() {
@@ -58,7 +55,7 @@ public class TypeFragment extends BaseFragment {
         GridLayoutManager manager = new GridLayoutManager(getActivity(), 4);
         recycleView.setLayoutManager(manager);
         llroot = (LinearLayout)root.findViewById(R.id.type_linearLayout);
-
+        topLayout = (TypeTopLayout)root.findViewById(R.id.topLayout);
         gridAdapter = new TypeAdapter(getActivity(), list);
 
 
@@ -100,7 +97,6 @@ public class TypeFragment extends BaseFragment {
                             Log.e("msg","typeTop为空" );
                         }
                         /*开始解析数据*/
-                        /*這裡沒有*/
 
                         addTop(typeTops);
 
@@ -161,44 +157,13 @@ public class TypeFragment extends BaseFragment {
 
     private void addTop(final List<TypeTop> typeTops) {
         Log.e("type:",""+typeTops.size());
+        List<String> imageUrl = new ArrayList<>();
         for (int i = 0; i < typeTops.size(); i++) {
             Log.e("msg", "addTop: " + typeTops.get(i).getPic());
-            // ImageLoader.getInstance().displayImage(typeTops.get(i).getPic(),bitmaps.get(i), ImageUtil.getDefaultOption());
-
-            final int finalI1 = i;
-            KaoLaTask.IRequest request = new KaoLaTask.IRequest() {
-                @Override
-                public Object doRequest() {
-                    return HttpUtils.downLoadEverything(typeTops.get(finalI1).getPic(), FileUtil.dir_image, "img" + finalI1, null);
-                }
-            };
-            KaoLaTask.IRequestCallBack callBack = new KaoLaTask.IRequestCallBack() {
-                @Override
-                public void success(Object object) {
-                    File file = (File) object;
-                    Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-                    bitmaps.add(bitmap);
-                }
-
-                @Override
-                public void error(String msg) {
-
-                }
-            };
-            new KaoLaTask(request, callBack).execute();
+            imageUrl.add(typeTops.get(i).getPic());
         }
-            /*等线程执行结束后执行*/
 
-//            typeTop = new TypeTopLayout(getContext());
-//            typeTop.setBitmaps(bitmaps);
-//            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 500);
-//            typeTop.setLayoutParams(params);
-//            llroot.addView(typeTop,0);
-
-            //  File file = HttpUtils.downLoadEverything(typeTops.get(i).getPic(), FileUtil.dir_image,"image_"+i,null);
-
-
-
+        topLayout.setImageUrlList(imageUrl);
 
     }
 

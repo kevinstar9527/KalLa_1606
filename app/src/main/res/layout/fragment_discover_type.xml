@@ -8,6 +8,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+    <a05.qianfeng.edu.cn.kalla_1606.other.widget.TypeTopLayout
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/topLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_margin="5dp"
+        android:text="分类"
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/bottom_rv"
         android:layout_width="match_parent"

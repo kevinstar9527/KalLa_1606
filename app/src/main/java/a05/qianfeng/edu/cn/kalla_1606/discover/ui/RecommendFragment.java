@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,6 +28,7 @@ import a05.qianfeng.edu.cn.kalla_1606.discover.util.DiscoverUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.adapter.CommonImageAdapter;
 import a05.qianfeng.edu.cn.kalla_1606.other.ui.BaseFragment;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.ImageUtil;
+import a05.qianfeng.edu.cn.kalla_1606.other.utils.JumpManager;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.KaoLaTask;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.LogUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.widget.CornerPannel;
@@ -172,7 +174,7 @@ public class RecommendFragment extends BaseFragment {
             int width =ViewGroup.LayoutParams.MATCH_PARENT;
             int height = 300;
             //为控件设置宽高
-            ViewPager veiwPager = new ViewPager(getActivity());
+            final ViewPager veiwPager = new ViewPager(getActivity());
             //为Viewpager设置宽高
             LinearLayout.LayoutParams rootParams = new LinearLayout.LayoutParams(width,height);
             veiwPager.setLayoutParams(rootParams);
@@ -180,7 +182,7 @@ public class RecommendFragment extends BaseFragment {
             //开始往ViewPager中动态添加控件
             List<ImageView> imageViews = new ArrayList<>();
             List<String>urls = new ArrayList<>();
-            List<Special> dataList = reconmend.getDataList();
+            final List<Special> dataList = reconmend.getDataList();
             for(int i =0 ;i<dataList.size();i++){
                 //创建并添加ImageView
                 //首先为ImageView控件设置宽高
@@ -222,7 +224,17 @@ public class RecommendFragment extends BaseFragment {
 
 
             });
-
+            veiwPager.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int currItem = veiwPager.getCurrentItem();
+                    Special special = dataList.get(currItem);
+                    String webUrl = special.getWeburl();
+                    if(!webUrl.isEmpty()){
+                        JumpManager.jumpToWeb(getActivity(),webUrl);
+                    }
+                }
+            });
 
             llroot.addView(veiwPager);
             llroot.addView(indexViewLine);
@@ -309,6 +321,7 @@ public class RecommendFragment extends BaseFragment {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         singleBanner.setLayoutParams(params);
         singleBanner.setPadding(30,20,20,30);
+        singleBanner.setScaleType(ImageView.ScaleType.FIT_XY);
         List<Special> special = recommond.getDataList();
         ImageLoader.getInstance().displayImage(special.get(0).getPic(),singleBanner, ImageUtil.getDefaultOption());
 

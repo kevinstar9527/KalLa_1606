@@ -26,6 +26,7 @@
 
 
         <RadioButton
+            android:checked="true"
             android:drawableTop="@drawable/selector_discover_btn"
             android:text="@string/home_rd_discover"
             android:id="@+id/btn_discover"

@@ -20,6 +20,11 @@
             android:layout_width="wrap_content"
             android:layout_height="10px" />
         <include layout="@layout/fragment_discover_radio_lanmu"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/radio_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
         <include layout="@layout/fragment_discover_radio_zhinengjingxuan"/>
     </LinearLayout>
 

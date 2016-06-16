@@ -225,6 +225,14 @@ public class HttpUtils {
                         dir.mkdirs();
                     }
                     File file = new File(dir,rename);
+
+                    if(file.exists()){
+                        if(listener!=null){
+                            listener.onCompleted(file);
+                            }
+                        return  file;
+                    }
+
                     //用来存储读取的一行字符（临时操作符）
                     fileOutputStream = new FileOutputStream(file);
                     //定义（文件）下载速度

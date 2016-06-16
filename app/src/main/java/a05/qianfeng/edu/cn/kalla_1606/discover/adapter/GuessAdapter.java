@@ -43,7 +43,7 @@ public class GuessAdapter extends RecyclerView.Adapter<GuessAdapter.GuessViewHol
     @Override
     public void onBindViewHolder(GuessAdapter.GuessViewHolder holder, int position) {
         /*绑定数据*/
-        ImageLoader.getInstance().displayImage(list.get(position).getPic(),holder.guessIv, ImageUtil.getDefaultOption());
+        ImageLoader.getInstance().displayImage(list.get(position).getPic(),holder.guessIv, ImageUtil.getRoundCircleOption());
         Log.e("GuessPanel:","这里执行了");
         holder.title.setText(list.get(position).getAlbumName());
         holder.content.setText(list.get(position).getTip());

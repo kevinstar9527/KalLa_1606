@@ -346,4 +346,49 @@ public class RadioInner {
     public void setUid(int uid) {
         this.uid = uid;
     }
+
+
+
+
+
+    /**
+     * type : 1
+     * typeName : 类型
+     * dataList : []
+     */
+
+    private int type;
+    private String typeName;
+    private List<RadioInnerContent> dataList;
+
+
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    public List<RadioInnerContent> getDataList() {
+        return dataList;
+    }
+
+    public void setDataList(List<RadioInnerContent> dataList) {
+        this.dataList = dataList;
+    }
+
+
+
+
+
 }

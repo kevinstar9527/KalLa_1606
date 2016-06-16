@@ -8,10 +8,11 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false">
   <android.support.design.widget.CollapsingToolbarLayout
+      app:layout_scrollFlags="scroll|exitUntilCollapsed"
       android:layout_width="match_parent"
       android:layout_height="240dp"
       app:collapsedTitleGravity="center"
-      app:contentScrim="@color/colorPrimary">
+      app:contentScrim="@android:color/white">
     <include layout="@layout/fragment_myradio_header"/>
      <android.support.v7.widget.Toolbar
         app:layout_collapseMode="pin"
@@ -30,19 +31,16 @@
 
     </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
+    <android.support.v4.widget.NestedScrollView
 
-
-    <!--<android.support.v4.widget.NestedScrollView
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:nestedScrollingEnabled="true">
+        android:layout_height="match_parent">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">-->
+            android:layout_height="match_parent">
         <android.support.design.widget.TabLayout
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -54,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </android.support.v4.view.ViewPager>
-    <!--    </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>-->
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

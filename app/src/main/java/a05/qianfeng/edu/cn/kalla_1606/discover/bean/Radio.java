@@ -230,5 +230,6 @@ public class Radio {
         public static final int TYPE_AI = 34;
 
 
+        public static final int TYPE_TV = 33;
     }
 }

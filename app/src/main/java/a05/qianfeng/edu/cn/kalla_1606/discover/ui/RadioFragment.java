@@ -1,6 +1,7 @@
 package a05.qianfeng.edu.cn.kalla_1606.discover.ui;
 
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,9 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import a05.qianfeng.edu.cn.kalla_1606.R;
+import a05.qianfeng.edu.cn.kalla_1606.discover.adapter.TeleversionAdapter;
 import a05.qianfeng.edu.cn.kalla_1606.discover.adapter.ZhiNengJXAdapter;
 import a05.qianfeng.edu.cn.kalla_1606.discover.bean.Radio;
 import a05.qianfeng.edu.cn.kalla_1606.discover.bean.RadioInner;
+import a05.qianfeng.edu.cn.kalla_1606.discover.bean.RadioInnerContent;
 import a05.qianfeng.edu.cn.kalla_1606.discover.util.DiscoverUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.adapter.CommonImageAdapter;
 import a05.qianfeng.edu.cn.kalla_1606.other.ui.BaseFragment;
@@ -41,6 +44,7 @@ public class RadioFragment extends BaseFragment {
     private IndexViewLine indexLine;
     private RecyclerView recycleView;
     private LinearLayout llroot;
+    private RecyclerView gridRecycle;
 
     @Override
     protected int getLayoutId() {
@@ -53,7 +57,8 @@ public class RadioFragment extends BaseFragment {
         viewPager = (ViewPager)root.findViewById(R.id.radio_viewPager);
         indexLine = (IndexViewLine) root.findViewById(R.id.index_line);
         recycleView = (RecyclerView) root.findViewById(R.id.radio_recycle);
-        llroot = (LinearLayout) refreshMyradio.findViewById(R.id.linearRoot);
+        gridRecycle = (RecyclerView)root.findViewById(R.id.radio_tv);
+        llroot = (LinearLayout) root.findViewById(R.id.linearRoot);
     }
 
 
@@ -152,8 +157,13 @@ public class RadioFragment extends BaseFragment {
                                     addZhiNengJingXuan(radio);
                                     break;
                                 case Radio.ComponentType.TYPE_ANTOR_HOt:
-
                                     addHotAntor(radio);
+                                    break;
+                                case Radio.ComponentType.TYPE_TV:
+                                    /*增加电视台选项*/
+                                    addTV(radio.getDataList());
+
+                                    break;
 
 
                             }
@@ -175,6 +185,32 @@ public class RadioFragment extends BaseFragment {
             }
         });
 
+
+    }
+
+    private void addTV(final List<RadioInner> dataList) {
+        /*后面的参数为设置每一行显示的个数*/
+
+        GridLayoutManager manager = new GridLayoutManager(getContext(),4);
+        gridRecycle.setLayoutManager(manager);
+        final List<RadioInnerContent>list = dataList.get(1).getDataList();
+        final TeleversionAdapter adapter = new TeleversionAdapter(getContext(),list.subList(0,7));
+        gridRecycle.setAdapter(adapter);
+        adapter.setOnRecycleViewItemClickListener(new TeleversionAdapter.OnRecycleViewItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                    if (position==7) {
+                        adapter.setInnerData(dataList.get(1).getDataList());
+                    }else{
+                        if (position==list.size()){
+                            adapter.setInnerData(list.subList(0,7));
+                        }
+                    }
+                      adapter.notifyDataSetChanged();
+
+
+            }
+        });
 
     }
 
@@ -207,7 +243,7 @@ public class RadioFragment extends BaseFragment {
 
         for (int i = 0; i < dataList.size(); i++) {
 
-            ImageView imageView = new ImageView(getActivity());
+            ImageView imageView = new ImageView(getContext());
                     /*将图片全屏显示*/
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             ViewPager.LayoutParams params = new ViewPager.LayoutParams();

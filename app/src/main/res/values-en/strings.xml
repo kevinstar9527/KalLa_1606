@@ -3,6 +3,10 @@
     <string name="home_rd_discover">discover</string>
     <string name="home_rb_mine">mine</string>
     <string name="home_rb_download">offline</string>
+    <string name="upgrade_">notification</string>
+    <string name="upgrade_cancel">cancel</string>
+    <string name="upgrade_download">downLoad</string>
+    <string name="upgrade_title">release_notification</string>
 
 
 </resources>

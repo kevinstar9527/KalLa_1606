@@ -35,7 +35,6 @@ public class ZhiNengJXAdapter extends RecyclerView.Adapter<ZhiNengJXAdapter.ZhiN
 
         View view = inflater.inflate(R.layout.fragment_discover_radio_zhinengjingxuanitem,null);
 
-
         return new ZhiNengJXViewHolder(view);
     }
 

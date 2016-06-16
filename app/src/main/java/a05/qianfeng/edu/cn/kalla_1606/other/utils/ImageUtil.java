@@ -68,7 +68,7 @@ public class ImageUtil {
                 .bitmapConfig(Bitmap.Config.RGB_565)//图片质量
                 .cacheInMemory(true)//添加到缓存里面
                 .cacheOnDisk(true)//下载到SD卡
-                .displayer(new RoundedBitmapDisplayer(10))//设置圆角图片
+                .displayer(new RoundedBitmapDisplayer(15))//设置圆角图片
                 .build();//构建
         ;
         return options;

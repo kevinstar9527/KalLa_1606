@@ -58,7 +58,7 @@ public class IndexViewLine extends View {
     }
 
     private void getAutoWidth(){
-        width=getWidth()/5;
+        width=getWidth()/count;
     }
 
     @Override

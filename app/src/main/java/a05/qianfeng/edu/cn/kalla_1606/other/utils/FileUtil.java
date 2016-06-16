@@ -17,6 +17,7 @@ public class FileUtil {
 public  static final File dir_image = getDir("image");
     public static final File dir_apk = getDir("apk");
     public static final File dir_cache = getDir("cache");
+    public static final File DIR_MP3 =getDir("mp3") ;
 
 
     public static File getSDcardDir(){
