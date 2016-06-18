@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<a05.qianfeng.edu.cn.kalla_1606.other.widget.KaoLaoSildePanelLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/home_left"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <!--加入侧滑菜单-->
+    <!--需要处理事件冲突操作-->
+<android.support.design.widget.NavigationView
+        app:menu="@menu/menu_other"
+        android:id="@+id/home_nv"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"/>
+
+<RelativeLayout
+    android:orientation="vertical"
+        android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
@@ -48,3 +62,4 @@
 
     </RadioGroup>
 </RelativeLayout>
+</a05.qianfeng.edu.cn.kalla_1606.other.widget.KaoLaoSildePanelLayout>

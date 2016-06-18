@@ -5,6 +5,7 @@
     android:layout_height="50dp">
 
     <ImageView
+
         android:padding="5dp"
         android:id="@+id/header_iv"
         android:src="@drawable/ic_launcher"

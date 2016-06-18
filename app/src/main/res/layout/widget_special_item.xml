@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
-     android:padding="10dp"
+    android:padding="10dp"
     android:layout_centerHorizontal="true"
     android:id="@+id/special_iv"
     android:layout_width="130dp"
-    android:layout_height="130dp" />
+    android:layout_height="120dp" />
     <TextView
         android:maxLines="1"
         android:ellipsize="end"

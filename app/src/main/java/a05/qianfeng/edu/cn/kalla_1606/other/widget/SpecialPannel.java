@@ -46,7 +46,9 @@ public class SpecialPannel extends LinearLayout {
 
             SpecialLayout specialLayout = new SpecialLayout(getContext(),dataList);
             addView(specialLayout);
-        }else{
+        }
+
+        else if (dataList.size()/3==2){
 
             Log.e("print","这里没执行到？");
             List<Special> special03 = dataList.subList(0, 3);

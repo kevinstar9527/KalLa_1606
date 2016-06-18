@@ -1,17 +1,17 @@
 package a05.qianfeng.edu.cn.kalla_1606.other.ui;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -21,6 +21,7 @@ import a05.qianfeng.edu.cn.kalla_1606.R;
 import a05.qianfeng.edu.cn.kalla_1606.discover.ui.DiscoverFragment;
 import a05.qianfeng.edu.cn.kalla_1606.download.ui.DownLoadOfflineFragment;
 import a05.qianfeng.edu.cn.kalla_1606.mine.ui.MyRadioFragment;
+import a05.qianfeng.edu.cn.kalla_1606.other.widget.KaoLaoSildePanelLayout;
 
 /**
  * Created by Administrator on 2016/6/6.
@@ -34,28 +35,53 @@ public class HomeActivity extends AppCompatActivity {
     private Button cancelBtn;
     private Button smallestBtn;
     private Fragment[] fragments;
+    private KaoLaoSildePanelLayout drawLayout;
+    private NavigationView navigationView;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         initView();
+        navigationView = (NavigationView) findViewById(R.id.home_nv);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                Intent intent = null;
+                switch (item.getItemId()){
+                    case R.id.shake:
+                        intent = new Intent(HomeActivity.this,ShakeActivity.class);
+                        break;
+                    case R.id.camera:
+                        intent = new Intent(HomeActivity.this,CamderActivity.class);
+                }
+                startActivity(intent);
+                //跳转的同时关闭侧边栏
+                drawLayout.closePane();
+                return false;
+            }
+        });
+
         fragments = new Fragment[]{
                 new DiscoverFragment(),
-                new MyRadioFragment(this),
+                new MyRadioFragment(),
                 new DownLoadOfflineFragment()
         };
 
         //首次进入界面时，显示发现页面
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            //先添加再隐藏
         fragmentTransaction.replace(R.id.home_fragment_container,fragments[0]);
         fragmentTransaction.commit();
+
 
     }
 
     private void initView() {
+
+        drawLayout = (KaoLaoSildePanelLayout)findViewById(R.id.home_left);
 
         group = (RadioGroup) findViewById(R.id.bar);
 
@@ -63,12 +89,14 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 int index = 0;
+                Log.e("mine","checkedId="+checkedId);
                 switch (checkedId) {
                     case R.id.btn_discover:
                         //点击跳转到发现页面
                        index = 0;
                         break;
                     case R.id.btn_mine:
+                        Log.e("mine","别跟我说这里没执行");
                         //点击跳转到我的电台页面
                       index = 1;
                         break;
@@ -89,6 +117,7 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+        drawLayout.setIntercept(changeListener);
     }
 
 
@@ -182,30 +211,19 @@ public class HomeActivity extends AppCompatActivity {
         });
         //setClickEffect();
     }
-
-    //为Button添加点击效果(失败)(实现退出效果)
-    private void setClickEffect(){
-
-        exitBtn.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                if(event.getAction()==MotionEvent.ACTION_BUTTON_PRESS)
-                {
-                    v.setBackgroundColor(Color.RED);
-                }else if(event.getAction()==MotionEvent.ACTION_UP){
-                    v.setBackgroundColor(Color.GREEN);
-                }
-                return false;
+    private int discoverPagerIndex;
+    public void setDiscoverPagerIndex(int index){
+        discoverPagerIndex = index;
+    }
+    private KaoLaoSildePanelLayout.IIntercept changeListener = new KaoLaoSildePanelLayout.IIntercept() {
+        @Override
+        public boolean needIntercepet() {
+            if (discoverPagerIndex==0){
+                return true;
             }
-        });
-    }
-
-    private void showExitDialog (){
-        final Dialog dialog = new Dialog(this,R.style.dialog_upgrate);
-        /*为对话框写布局*/
-       // dialog.setContentView(R.layout.);
-    }
+            return false;
+        }
+    };
 
 }
 

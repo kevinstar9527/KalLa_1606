@@ -66,6 +66,9 @@ public class SpecialItem extends RelativeLayout {
                         JumpManager.jumpToWeb(getContext(),special.getWeburl());
                         //Log.e("ivContent",special.getWeburl());
                     }
+                    else if (special.getWeburl().isEmpty()&&special.getMp3PlayUrl().isEmpty()){
+                        JumpManager.jumpToPlayer2(getContext());
+                    }
                 }
             }
         });

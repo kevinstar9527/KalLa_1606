@@ -4,13 +4,13 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -25,7 +25,6 @@ public class WebActivity extends AppCompatActivity {
 
     private ProgressBar progre;
     private WebView webView;
-    private TextView tvTitle;
 
     private WebViewClient webViewClient = new WebViewClient(){
         @Override
@@ -39,7 +38,8 @@ public class WebActivity extends AppCompatActivity {
         public void onPageFinished(WebView view, String url) {
             /*页面加载完成*/
             /*设置页面的标题*/
-            String title = view.getTitle();
+            String titles = view.getTitle();
+            title.setText(titles);
             super.onPageFinished(view, url);
         }
     };
@@ -53,7 +53,9 @@ public class WebActivity extends AppCompatActivity {
             }
        }
     };
-    private Toolbar toolbar;
+   ;
+    private TextView title;
+    private ImageView back;
 
 
     @SuppressLint("JavascriptInterface")
@@ -61,6 +63,7 @@ public class WebActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
+        // tvTitle = (TextView) findViewById(R.id.topTitle);
         progre = (ProgressBar) findViewById(R.id.web_pb);
         webView = (WebView) findViewById(R.id.web_view);
         webView.setWebChromeClient(chromeClient);
@@ -74,21 +77,25 @@ public class WebActivity extends AppCompatActivity {
         /*获取从其他页面传过来的url*/
         String url = getIntent().getStringExtra(JumpManager.TAG_URL);
         webView.loadUrl(url);
-        /*添加工具栏*/
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        title = (TextView) findViewById(R.id.title_web);
+        back = (ImageView) findViewById(R.id.back_btn);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        tvTitle = (TextView) findViewById(R.id.topTitle);
 
     }
     /*javaScript要访问的java类*/
     @SuppressLint("JavascriptInterface")
     class IKaoLaoWebView {
 
-        public void setTitle(String title){
-            if(tvTitle!=null){
-                tvTitle.setText(title);
+        public void setTitle(String titles){
+            if(titles!=null){
+                title.setText(titles);
+                Log.e("Title",titles);
             }
         }
     }

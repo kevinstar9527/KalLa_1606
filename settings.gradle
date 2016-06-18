@@ -1,1 +1,3 @@
-include ':app', ':PullToRefresh-library'
+include ':app', ':PullToRefresh-library', ':testevent', ':ceshichengxun'
+include ':zxing'
+include ':zxing-demo'

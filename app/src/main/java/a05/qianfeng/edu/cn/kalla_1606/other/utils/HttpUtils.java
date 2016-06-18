@@ -225,7 +225,7 @@ public class HttpUtils {
                         dir.mkdirs();
                     }
                     File file = new File(dir,rename);
-
+                    //如果文件存在则返回无需请求
                     if(file.exists()){
                         if(listener!=null){
                             listener.onCompleted(file);

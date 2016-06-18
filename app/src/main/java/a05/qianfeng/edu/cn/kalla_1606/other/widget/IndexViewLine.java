@@ -40,6 +40,8 @@ public class IndexViewLine extends View {
     public IndexViewLine(Context context) {
         super(context);
         setColor();
+        count=5;
+
     }
 
     public IndexViewLine(Context context, AttributeSet attrs) {

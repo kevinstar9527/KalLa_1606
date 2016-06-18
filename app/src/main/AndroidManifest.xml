@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="a05.qianfeng.edu.cn.kalla_1606"
-    android:versionName="1.1.1"
-    android:versionCode="1">
-
+    android:versionCode="1"
+    android:versionName="1.1.1">
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_FORMAT_FILESYSTEMS" />
 
@@ -31,9 +32,13 @@
 
         <!-- 主页面 -->
         <activity android:name=".other.ui.HomeActivity" />
-        <!--web页面浏览器页面-->
-        <activity android:name=".other.ui.WebActivity"/>
-        <activity android:name=".discover.ui.Player1Activity"/>
+        <!-- web页面浏览器页面 -->
+        <activity android:name=".other.ui.WebActivity" />
+        <activity android:name=".discover.ui.Player1Activity" />
+        <activity android:name=".discover.ui.Player2Activity" />
+        <!--摇一摇-->
+        <activity android:name=".other.ui.ShakeActivity"/>
+        <activity android:name=".other.ui.CamderActivity"/>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -42,7 +47,11 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".discover.ui.NewsActivity"></activity>
+        <activity android:name=".discover.ui.NewsActivity" />
+        <activity
+            android:name=".mine.ui.ScrollingActivityDemo"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

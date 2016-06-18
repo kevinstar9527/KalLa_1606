@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -30,10 +31,15 @@ import a05.qianfeng.edu.cn.kalla_1606.other.utils.JumpManager;
  */
 public class EnterAdpater extends  RecyclerView.Adapter<EnterAdpater.EnterViewHoder>{
 
+    private final int width;//屏幕宽度
+
+    private  int size = 20;//间距
+
     public EnterAdpater(Context context, List<Special> list) {
         this.list = list;
         this.context = context;
         inflater = LayoutInflater.from(context);
+        width = context.getResources().getDisplayMetrics().widthPixels;
     }
 
     private List<Special> list;
@@ -50,6 +56,7 @@ public class EnterAdpater extends  RecyclerView.Adapter<EnterAdpater.EnterViewHo
         final Special special = list.get(position);
 
         ImageLoader.getInstance().displayImage(list.get(position).getPic(),holder.imageView, ImageUtil.getRoundCircleOption());
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +84,12 @@ public class EnterAdpater extends  RecyclerView.Adapter<EnterAdpater.EnterViewHo
         public EnterViewHoder(View itemView) {
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.adapter_enter_iv);
+            //动态的为imageView设置宽高
+            int iWidth = (width-size*4)/4;
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(iWidth,iWidth);
+            params.setMargins(size,size,size,size);
+            imageView.setLayoutParams(params);
+
         }
     }
 

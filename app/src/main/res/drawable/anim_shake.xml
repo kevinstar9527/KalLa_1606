@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--帧动画-->
+    <item android:drawable="@drawable/a9" android:duration="100"/>
+    <item android:drawable="@drawable/a10" android:duration="100"/>
+    <item android:drawable="@drawable/a11" android:duration="100"/>
+    <item android:drawable="@drawable/a10" android:duration="100"/>
+    <item android:drawable="@drawable/a9" android:duration="100"/>
+    <item android:drawable="@drawable/a8" android:duration="100"/>
+    <item android:drawable="@drawable/a7" android:duration="100"/>
+    <item android:drawable="@drawable/a8" android:duration="100"/>
+</animation-list>

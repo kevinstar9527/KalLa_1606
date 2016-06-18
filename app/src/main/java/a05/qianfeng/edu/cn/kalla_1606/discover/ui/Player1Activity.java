@@ -114,7 +114,7 @@ public class Player1Activity extends AppCompatActivity implements MediaPlayer.On
         Uri uri = Uri.fromFile(file);
         mediaPlayer.reset();
         try {
-            //设置存放路径
+            //设置播放路径
             mediaPlayer.setDataSource(this,uri);
             //开始播放
             mediaPlayer.prepare();

@@ -50,7 +50,7 @@
             app:behavior_target="@id/tabLayout"
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="200dp">
         </android.support.v4.view.ViewPager>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

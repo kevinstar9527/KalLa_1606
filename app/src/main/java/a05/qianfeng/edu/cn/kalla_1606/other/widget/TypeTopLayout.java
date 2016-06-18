@@ -138,6 +138,8 @@ public class TypeTopLayout extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         float scale = getContext().getResources().getDisplayMetrics().density;//得到像素无关密度及1dp等于多少像素
+        //下面这句表示的宽度是屏幕宽度减去margin
+        //Math.ceil返回的是与之最接近的整数
         int width = getResources().getDisplayMetrics().widthPixels-(int)(scale*40+0.5f);//等到控件的宽度包括中间的间隔
         //先得到底部的宽度(注意单位都是像素)
         //其中5是每个小间隔的宽度，同时size也是底部的边长
@@ -155,6 +157,9 @@ public class TypeTopLayout extends View {
         int swidth = src.getWidth();
         int sheight = src.getHeight();
         TypeRect rect = null;
+        if (typeRects==null){
+            return null;
+        }
         if (typeRects[i]!=null) {
             rect = typeRects[i];
         }else{

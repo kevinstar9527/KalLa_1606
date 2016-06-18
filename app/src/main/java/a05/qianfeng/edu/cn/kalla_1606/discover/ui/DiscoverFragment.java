@@ -3,6 +3,7 @@ package a05.qianfeng.edu.cn.kalla_1606.discover.ui;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 import a05.qianfeng.edu.cn.kalla_1606.R;
 import a05.qianfeng.edu.cn.kalla_1606.other.adapter.CommonFragmentPagerAdapter;
 import a05.qianfeng.edu.cn.kalla_1606.other.ui.BaseFragment;
+import a05.qianfeng.edu.cn.kalla_1606.other.ui.HomeActivity;
 
 /**
  * Created by Administrator on 2016/6/6.
@@ -18,6 +20,7 @@ public class DiscoverFragment extends BaseFragment {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    HomeActivity homeActivity;
 
 
     @Override
@@ -73,6 +76,9 @@ public class DiscoverFragment extends BaseFragment {
             public void onPageSelected(int position) {
                 //切换ViewPager的时候让TabLayout联动
                 tabLayout.getTabAt(position).select();
+                HomeActivity home = (HomeActivity) getActivity();
+                home.setDiscoverPagerIndex(position);
+                Log.e("position","-------"+position);
             }
 
             @Override

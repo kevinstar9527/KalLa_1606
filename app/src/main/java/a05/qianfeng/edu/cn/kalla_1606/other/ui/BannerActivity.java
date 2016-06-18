@@ -10,8 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,23 +21,29 @@ import a05.qianfeng.edu.cn.kalla_1606.R;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.FileUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.HttpUtils;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.KaoLaTask;
-import a05.qianfeng.edu.cn.kalla_1606.other.utils.KaoLaTranSformation;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.LogUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.OtherHttpUtils;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2016/6/6.
  */
 public class BannerActivity extends AppCompatActivity {
-    private ImageView imageView;
+    @Bind(R.id.banner_content_iv)
+    ImageView bannerContentIv;
+
+    //private ImageView imageView;
     private Timer timer;
-    private TimerTask task ;//一个线程
-    private int time=3;
+    private TimerTask task;//一个线程
+    private int time = 3;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_banner);
-        imageView = (ImageView) findViewById(R.id.banner_content_iv);
+        ButterKnife.bind(this);
+        //imageView = (ImageView) findViewById(R.id.banner_content_iv);
 
         task = new TimerTask() {
             @Override
@@ -80,15 +84,15 @@ public class BannerActivity extends AppCompatActivity {
                     JSONObject result = root.getJSONObject("result");
                     String img = result.getString("img");
                     LogUtil.w("img = " + img);
-                    //showImage(img);
+                    showImage(img);
                     /*Picasso网络请求*/
-                    Picasso.with(BannerActivity.this)
+                   /* Picasso.with(BannerActivity.this)
                             .load(img)//下载图片
                             .error(R.drawable.ic_launcher)//设置默认图片
                             .placeholder(R.drawable.album_hidden)//正在加载中显示的图片
-                            .resize(200,300)//把图片显示多大
-                                .transform(new KaoLaTranSformation())
-                            .into(imageView);//到那个控件上
+                            .resize(200, 300)//把图片显示多大
+                            .transform(new KaoLaTranSformation())
+                            .into(bannerContentIv);//到那个控件上*/
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -145,16 +149,16 @@ public class BannerActivity extends AppCompatActivity {
     /*img是图片的url？yes*/
     }
 
-    private void showImage(final String img){
+    private void showImage(final String img) {
         final String rename = FileUtil.getFileNameByHashCode(img);
-        File image = new File(FileUtil.dir_image,rename);
+        File image = new File(FileUtil.dir_image, rename);
         //判断着个图片有没有下载过，如果存在，表示下载过
-        if(!image.exists()) {
+        if (!image.exists()) {
             KaoLaTask.IRequest request = new KaoLaTask.IRequest() {
                 @Override
                 public Object doRequest() {
                     //下载图片
-                    return HttpUtils.downLoadEverything(img, FileUtil.dir_image, rename,null);
+                    return HttpUtils.downLoadEverything(img, FileUtil.dir_image, rename, null);
                 }
             };
 
@@ -164,7 +168,7 @@ public class BannerActivity extends AppCompatActivity {
                     //将返回的图片资源提取出来（目的是为了得到它的缓存路径）
                     File file = (File) object;
                     final Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-                    imageView.setImageBitmap(bitmap);
+                    bannerContentIv.setImageBitmap(bitmap);
 
                 }
 
@@ -174,7 +178,7 @@ public class BannerActivity extends AppCompatActivity {
                 }
             };
 
-            KaoLaTask kaoLaTask = new KaoLaTask(request,callBack);
+            KaoLaTask kaoLaTask = new KaoLaTask(request, callBack);
             kaoLaTask.execute();
         }
     }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import a05.qianfeng.edu.cn.kalla_1606.discover.bean.RadioInnerContent;
  * Created by Administrator on 2016/6/14.
  */
 public class TeleversionAdapter extends RecyclerView.Adapter<TeleversionAdapter.TeleversionViewHolder>{
+    private  int width;
     /*电台下面的选项*/
     LayoutInflater inflater;
     List<RadioInnerContent> innerData = null;
@@ -49,6 +51,7 @@ public class TeleversionAdapter extends RecyclerView.Adapter<TeleversionAdapter.
         /*初始化数据与初始化填充器*/
         inflater = LayoutInflater.from(context);
         innerData =radioInners;
+        width = context.getResources().getDisplayMetrics().widthPixels;
 
 
     }
@@ -92,7 +95,7 @@ public class TeleversionAdapter extends RecyclerView.Adapter<TeleversionAdapter.
     }
 
 
-    public static class TeleversionViewHolder extends RecyclerView.ViewHolder
+    public  class TeleversionViewHolder extends RecyclerView.ViewHolder
 
     {
 
@@ -103,6 +106,11 @@ public class TeleversionAdapter extends RecyclerView.Adapter<TeleversionAdapter.
             super(itemView);
             content = (TextView) itemView.findViewById(R.id.content);
             btnIv = (ImageView) itemView.findViewById(R.id.imageButton);
+            //动态设置文字内容的高度
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width/4,width/4);
+            content.setLayoutParams(params);
+            btnIv.setLayoutParams(params);
+
         }
     }
 

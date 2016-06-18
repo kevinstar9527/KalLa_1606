@@ -5,6 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/KalLa_1606.iml" filepath="$PROJECT_DIR$/KalLa_1606.iml" />
       <module fileurl="file://$PROJECT_DIR$/PullToRefresh-library/PullToRefresh-library.iml" filepath="$PROJECT_DIR$/PullToRefresh-library/PullToRefresh-library.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ceshichengxun/ceshichengxun.iml" filepath="$PROJECT_DIR$/ceshichengxun/ceshichengxun.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testevent/testevent.iml" filepath="$PROJECT_DIR$/testevent/testevent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zxing/zxing.iml" filepath="$PROJECT_DIR$/zxing/zxing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zxing-demo/zxing-demo.iml" filepath="$PROJECT_DIR$/zxing-demo/zxing-demo.iml" />
     </modules>
   </component>
 </project>

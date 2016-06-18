@@ -11,6 +11,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/PullToRefresh-library" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/ceshichengxun" />
+            <option value="$PROJECT_DIR$/testevent" />
+            <option value="$PROJECT_DIR$/zxing" />
+            <option value="$PROJECT_DIR$/zxing-demo" />
           </set>
         </option>
         <option name="myModules">
@@ -18,6 +22,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/PullToRefresh-library" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/ceshichengxun" />
+            <option value="$PROJECT_DIR$/testevent" />
+            <option value="$PROJECT_DIR$/zxing" />
+            <option value="$PROJECT_DIR$/zxing-demo" />
           </set>
         </option>
       </GradleProjectSettings>

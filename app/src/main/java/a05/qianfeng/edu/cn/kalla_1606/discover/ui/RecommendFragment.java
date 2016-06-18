@@ -101,7 +101,7 @@ public class RecommendFragment extends BaseFragment {
                                        addEnter(recommend);
                                         break;
                                 case Recommond.ComponentType.TYPE_SCROLL_NEW://滚动快讯
-                                        //addVerticalScrollText(recommend);
+                                       addVerticalScrollText(recommend);
                                         break;
                                 case Recommond.ComponentType.TYPE_PANEL:
                                     addSpecialPanel(recommend);
@@ -172,7 +172,7 @@ public class RecommendFragment extends BaseFragment {
             //获取屏幕宽度
           //  Display display = getActivity().getWindowManager().getDefaultDisplay();
             int width =ViewGroup.LayoutParams.MATCH_PARENT;
-            int height = 300;
+            int height = 400;
             //为控件设置宽高
             final ViewPager veiwPager = new ViewPager(getActivity());
             //为Viewpager设置宽高
@@ -251,7 +251,7 @@ public class RecommendFragment extends BaseFragment {
     private void addEnter(Recommond recommend){
         RecyclerView recyclerView = new RecyclerView(getActivity());
         //宽高
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,250);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         recyclerView.setLayoutParams(params);
 
         //设置布局管理器
@@ -321,9 +321,10 @@ public class RecommendFragment extends BaseFragment {
     /*增加一个单栏的banner*/
     private void addSingleBanner(Recommond recommond){
         ImageView singleBanner = new ImageView(getContext());
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,200);
+
         singleBanner.setLayoutParams(params);
-        singleBanner.setPadding(30,20,20,30);
+        singleBanner.setPadding(30,30,30,30);
         singleBanner.setScaleType(ImageView.ScaleType.FIT_XY);
         List<Special> special = recommond.getDataList();
         ImageLoader.getInstance().displayImage(special.get(0).getPic(),singleBanner, ImageUtil.getDefaultOption());
