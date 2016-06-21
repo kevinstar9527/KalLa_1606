@@ -3,6 +3,7 @@ package a05.qianfeng.edu.cn.kalla_1606.discover.bean;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/6/8.
  */
-public class Special {
+public class Special implements Serializable{
 
 
     /**

@@ -152,7 +152,9 @@ public class VerticalText extends View{
                int count = height / speed;
 
                //我要在一秒钟之内完成，计算每一次偏移的时间间隔（平均速度）
-
+                if (count ==0){
+                    return;
+                }
                intervalTime = scrollTime /count;
                prepareScroll();
            }

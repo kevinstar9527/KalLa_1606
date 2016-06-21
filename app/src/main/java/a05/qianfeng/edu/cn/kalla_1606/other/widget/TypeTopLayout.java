@@ -101,7 +101,11 @@ public class TypeTopLayout extends View {
                         @Override
                         public void onCompleted(File file) {
                            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+
                            bitmap =  transform(bitmap, index);
+                           if (typeRects.length==0){
+                                return;
+                            }
                            typeRects[index].bitmap = bitmap;
                             post(new Runnable() {
                                 @Override

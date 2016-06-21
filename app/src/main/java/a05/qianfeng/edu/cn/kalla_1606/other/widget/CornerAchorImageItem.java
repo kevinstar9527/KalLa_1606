@@ -11,6 +11,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import a05.qianfeng.edu.cn.kalla_1606.R;
 import a05.qianfeng.edu.cn.kalla_1606.discover.bean.AnchorInner;
+import a05.qianfeng.edu.cn.kalla_1606.discover.util.NumberUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.ImageUtil;
 
 /**
@@ -53,7 +54,22 @@ public class CornerAchorImageItem extends RelativeLayout {
 
         }
        // Log.e("msg",special.getLikedNum());
-        content.setText(special.getRecommendReson());
+        if (special.getRecommendReson().isEmpty()){
+            long number = special.getLikedNum();
+            if (number>999999){
+                content.setText("99w+");
+                return;
+            }
+            String fans = NumberUtil.transform(number);
+            if (fans!=null){
+
+                content.setText(fans);
+            }
+
+        }else {
+
+            content.setText(special.getRecommendReson());
+        }
 
     }
     public CornerAchorImageItem(Context context, AttributeSet set){

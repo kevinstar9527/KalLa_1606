@@ -56,6 +56,8 @@ public class WebActivity extends AppCompatActivity {
    ;
     private TextView title;
     private ImageView back;
+    //分享本篇文章
+    private ImageView share;
 
 
     @SuppressLint("JavascriptInterface")
@@ -75,7 +77,7 @@ public class WebActivity extends AppCompatActivity {
         /*添加javaScriptt回调代码的接口*/
         webView.addJavascriptInterface(new IKaoLaoWebView(),"KaoLa");
         /*获取从其他页面传过来的url*/
-        String url = getIntent().getStringExtra(JumpManager.TAG_URL);
+        final String url = getIntent().getStringExtra(JumpManager.TAG_URL);
         webView.loadUrl(url);
         title = (TextView) findViewById(R.id.title_web);
         back = (ImageView) findViewById(R.id.back_btn);
@@ -85,7 +87,13 @@ public class WebActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        share = (ImageView) findViewById(R.id.btn_share);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JumpManager.jumpToShare(WebActivity.this,url);
+            }
+        });
 
     }
     /*javaScript要访问的java类*/

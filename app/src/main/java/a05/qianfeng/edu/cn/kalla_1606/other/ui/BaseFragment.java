@@ -36,8 +36,8 @@ public abstract class BaseFragment extends Fragment{
     protected abstract int getLayoutId();
     /*视图初始化*/
     protected abstract void initViews();
-    /*数据初始化*/
-    protected abstract void initData();
     /*事件初始化*/
     protected abstract void initEvents();
+    /*数据初始化*/
+    protected abstract void initData();
 }

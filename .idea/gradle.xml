@@ -9,23 +9,25 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/JPushExample" />
             <option value="$PROJECT_DIR$/PullToRefresh-library" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/ceshichengxun" />
+            <option value="$PROJECT_DIR$/libzxing" />
             <option value="$PROJECT_DIR$/testevent" />
-            <option value="$PROJECT_DIR$/zxing" />
-            <option value="$PROJECT_DIR$/zxing-demo" />
+            <option value="$PROJECT_DIR$/testzxing" />
           </set>
         </option>
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/JPushExample" />
             <option value="$PROJECT_DIR$/PullToRefresh-library" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/ceshichengxun" />
+            <option value="$PROJECT_DIR$/libzxing" />
             <option value="$PROJECT_DIR$/testevent" />
-            <option value="$PROJECT_DIR$/zxing" />
-            <option value="$PROJECT_DIR$/zxing-demo" />
+            <option value="$PROJECT_DIR$/testzxing" />
           </set>
         </option>
       </GradleProjectSettings>

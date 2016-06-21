@@ -5,6 +5,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.SystemClock;
 import android.util.Log;
 
 /**
@@ -23,7 +24,7 @@ public class ShakeSensorListener implements SensorEventListener {
     private final int speedTag = 200;
     private long lastTime = 0;
     //延迟的时间
-    private long delay = 150;
+    private long delay = 100;
     private float lastX,lastY,lastZ;
     private IShakeListener listener ;
 
@@ -42,9 +43,10 @@ public class ShakeSensorListener implements SensorEventListener {
         float x = values[0];
         float y = values[1];
         float z = values [2];
-       // long currTime = SystemClock.currentThreadTimeMillis();//获取当前时间
-       long currTime=  System.currentTimeMillis();//这个方法有延迟
+       long currTime = SystemClock.currentThreadTimeMillis();//获取当前时间
+      // long currTime=  System.currentTimeMillis();//这个方法有延迟
         if (currTime-lastTime<delay){
+
             return;
         }
         lastTime = currTime;

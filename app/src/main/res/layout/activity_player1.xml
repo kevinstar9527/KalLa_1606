@@ -5,13 +5,13 @@
     android:layout_height="match_parent">
     <!--最底层的模糊图片-->
     <ImageView
-        android:background="@android:color/holo_red_dark"
+
         android:id="@+id/player1_iv_bottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     <!--标题栏-->
      <RelativeLayout
-         android:background="@android:color/holo_green_dark"
+
         android:id="@+id/player1_top_rl"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_title_bar_distance">
@@ -21,7 +21,8 @@
              android:src="@drawable/selector_btn_back"
              android:layout_centerVertical="true"
              android:layout_width="wrap_content"
-             android:layout_height="wrap_content" />
+             android:layout_height="wrap_content"
+             android:id="@+id/iv_btn_back" />
          <TextView
              android:text="订阅"
              android:textColor="@android:color/white"
@@ -43,7 +44,6 @@
     <!--最下面的五个按钮-->
     <LinearLayout
 
-        android:background="@android:color/holo_green_dark"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:id="@+id/player1_bottom_ll"
@@ -83,16 +83,17 @@
     <!--中间的内容夹在中间填充屏幕-->
     <LinearLayout
         android:layout_below="@id/player1_top_rl"
-        android:background="#ffff00"
         android:layout_marginBottom="80dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <!--层叠效果-->
         <!--中间的内容-->
-        <include layout="@layout/layout_palyer" />
+        <include
+            layout="@layout/layout_palyer"
+                       />
     </LinearLayout>
 
 </RelativeLayout>

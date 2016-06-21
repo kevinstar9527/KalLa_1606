@@ -135,7 +135,7 @@ public class AnchorFragment extends BaseFragment {
                                     addBanner(anchorInner);
                                     break;
                                 case Anchor.CompomentType.TYPE_SCROLL_TEXT:
-                                   // addScrollText(anchorInner);
+                                   addScrollText(anchorInner);
                                     break;
                                 case Anchor.CompomentType.TYPE_ANCHOR:
                                     addAnchor(anchors.get(i));

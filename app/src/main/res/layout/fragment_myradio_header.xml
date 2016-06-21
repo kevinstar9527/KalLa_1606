@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/to_login"
     android:background="@drawable/ic_user_photo_default_bg"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">

@@ -1,6 +1,10 @@
 package a05.qianfeng.edu.cn.kalla_1606.mine.ui;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -15,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -33,12 +38,54 @@ import butterknife.ButterKnife;
 public class MyRadioFragment extends BaseFragment {
 
 
+    public static final int RESULT_OK = 1;
     private TabLayout tabLayout;
     private Toolbar toolbar;
     private ImageView message;
     private ViewPager viewPager;
     private HomeActivity home;
+    private RelativeLayout login;
+    private ImageView middle_photo;
+    //背景图片以及头像
 
+    public RelativeLayout getLogin() {
+        return login;
+    }
+
+    public void setLogin(RelativeLayout login) {
+        this.login = login;
+    }
+
+    private Bitmap photo = null;
+
+    public Bitmap getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Bitmap photo) {
+        this.photo = photo;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    //用来接收从登陆界面返回的头像等信息
+    private String nickname = null;
+    public String picUrl = null;
+    private View subLayout;
+
+    public ImageView getMiddle_photo() {
+        return middle_photo;
+    }
+
+    public void setMiddle_photo(ImageView middle_photo) {
+        this.middle_photo = middle_photo;
+    }
 
     @SuppressLint("ValidFragment")
     public MyRadioFragment() {
@@ -55,6 +102,20 @@ public class MyRadioFragment extends BaseFragment {
     protected void initViews() {
 
         ButterKnife.bind(root);
+
+       // subLayout =root.findViewById(R.id.log_inside);
+        //找到include中的视图
+        login = (RelativeLayout)root.findViewById(R.id.to_login);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("Login","这里执行了");
+                Intent intent = new Intent(getActivity(),LogOnActivity.class);
+                getActivity().startActivityForResult(intent,RESULT_OK);
+            }
+        });
+        //设置图像
+        middle_photo = (ImageView)root.findViewById(R.id.middle_photo);
 
         toolbar = (Toolbar) root.findViewById(R.id.toolbar);
         toolbar.setTitle(" ");
@@ -80,6 +141,10 @@ public class MyRadioFragment extends BaseFragment {
         }
         CommonFragmentPagerAdapter adapter = new CommonFragmentPagerAdapter(getChildFragmentManager(), fragments);
         viewPager.setAdapter(adapter);
+        //点击跳转到登陆页面
+
+
+
     }
 
     @Override
@@ -101,7 +166,10 @@ public class MyRadioFragment extends BaseFragment {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "正在点击图标", Toast.LENGTH_SHORT).show();
+               Toast.makeText(getContext(), "正在点击图标", Toast.LENGTH_SHORT).show();
+//                Log.e("Login","这里执行了");
+//                Intent intent = new Intent(getContext(),LogOnActivity.class);
+//                startActivity(intent);
             }
         });
 
@@ -112,7 +180,7 @@ public class MyRadioFragment extends BaseFragment {
                 Toast.makeText(getContext(), "您正在点击的是自定义视图", Toast.LENGTH_SHORT).show();
             }
         });
-
+        //为viewPager设置滑动监听，以及与tablayout的联动
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -149,9 +217,19 @@ public class MyRadioFragment extends BaseFragment {
 
             }
         });
+        //点击跳转到登陆按钮
+
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(photo!=null){
+            Drawable drawable = new BitmapDrawable(getResources(),photo);
+            login.setBackground(drawable);
+        }
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -180,4 +258,6 @@ public class MyRadioFragment extends BaseFragment {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
+
+
 }

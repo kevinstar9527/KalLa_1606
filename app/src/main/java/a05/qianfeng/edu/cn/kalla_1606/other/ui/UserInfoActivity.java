@@ -11,7 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import a05.qianfeng.edu.cn.kalla_1606.R;
+import a05.qianfeng.edu.cn.kalla_1606.other.utils.ImageUtil;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -41,6 +44,8 @@ public class UserInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_userinfo);
         ButterKnife.bind(this);
         //为图片设置圆角图片
+        ImageLoader.getInstance().displayImage("drawable://"+R.drawable.ic_launcher,headerPhoto, ImageUtil.getCircleOption());
+      //  ImageLoader.getInstance().displayImage("drawable://"+R.drawable.ic_camera,cameraPhoto,);
 
     }
 

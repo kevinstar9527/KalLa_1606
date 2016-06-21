@@ -135,17 +135,12 @@ public class Player2Activity extends AppCompatActivity {
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {
+
                                                 Bitmap backgroud = tempBitmap;
-                                                //对图片进行模糊处理,总共进行两次模糊处理以期达到高斯模糊的效果
+                                                //模糊图片
                                                 backgroud = Blur.fastblur(Player2Activity.this,backgroud,25);
-                                                Log.e("Blur:","长度:"+backgroud.getHeight()+" 宽度:"+backgroud.getWidth());
-                                                int windwoWidth = getResources().getDisplayMetrics().widthPixels;
-                                                int heightWindow = getResources().getDisplayMetrics().heightPixels;
-                                                Bitmap temp = Bitmap.createBitmap(backgroud,0,0,windwoWidth,heightWindow);
-                                                temp = Blur.fastblur(Player2Activity.this,temp,25);
-                                                temp = Bitmap.createBitmap(temp,0,0,windwoWidth,heightWindow);
-                                                temp = Blur.fastblur(Player2Activity.this,temp,25);
-                                                BitmapDrawable target = new BitmapDrawable(temp);
+
+                                                BitmapDrawable target = new BitmapDrawable(backgroud);
                                                 rootLayout.setBackgroundDrawable(target);
                                                 setHeaderIvImage(tempBitmap);
                                             }
@@ -194,13 +189,15 @@ public class Player2Activity extends AppCompatActivity {
                                                     @Override
                                                     public void run() {
                                                         Bitmap backgroud = tempBitmap;
+                                                        /*backgroud = Blur.blurImageAmeliorate(backgroud);
+                                                        BitmapDrawable target = new BitmapDrawable(backgroud);*/
                                                         backgroud = Blur.fastblur(Player2Activity.this,backgroud,25);
                                                         int windwoWidth1 = getResources().getDisplayMetrics().widthPixels;
                                                         int heightWindow1 = getResources().getDisplayMetrics().heightPixels;
                                                         Bitmap temp = Bitmap.createBitmap(backgroud,0,0,windwoWidth1,heightWindow1);
-                                                        temp = Blur.fastblur(Player2Activity.this,temp,25);
+                                                       /* temp = Blur.fastblur(Player2Activity.this,temp,25);
                                                         temp = Bitmap.createBitmap(temp,0,0,windwoWidth1,heightWindow1);
-                                                        temp = Blur.fastblur(Player2Activity.this,temp,25);
+                                                        temp = Blur.fastblur(Player2Activity.this,temp,25);*/
                                                         BitmapDrawable target = new BitmapDrawable(temp);
                                                         rootLayout.setBackgroundDrawable(target);
                                                         //设置头像

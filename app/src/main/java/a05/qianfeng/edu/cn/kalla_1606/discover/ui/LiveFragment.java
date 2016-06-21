@@ -1,24 +1,27 @@
 package a05.qianfeng.edu.cn.kalla_1606.discover.ui;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.AbsoluteSizeSpan;
-import android.text.style.BackgroundColorSpan;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.ImageSpan;
-import android.widget.TextView;
+import android.support.v4.view.ViewPager;
+import android.widget.ImageView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import a05.qianfeng.edu.cn.kalla_1606.R;
+import a05.qianfeng.edu.cn.kalla_1606.discover.bean.Live;
+import a05.qianfeng.edu.cn.kalla_1606.discover.util.DiscoverUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.ui.BaseFragment;
+import a05.qianfeng.edu.cn.kalla_1606.other.utils.KaoLaTask;
 
 /**
  * Created by Administrator on 2016/6/7.
  */
 public class LiveFragment extends BaseFragment {
 
-    private TextView iv_Text;
+    private ViewPager vpBannerTop;
 
     @Override
     protected int getLayoutId() {
@@ -27,39 +30,62 @@ public class LiveFragment extends BaseFragment {
 
     @Override
     protected void initViews() {
-        iv_Text = (TextView) root.findViewById(R.id.iv_text);
-        String text = "注册表scaling中数字3和4各代表什么?那个对电脑有好处?";
-        /*生成一个可以加工的字符串*/
-        SpannableString spannableString = new SpannableString(text);
-        //可以设置夜色背景大小图片下划线横线，样式
-        BackgroundColorSpan bgSpan = new BackgroundColorSpan(Color.YELLOW);
-        /*要指定哪各个字符*/
-        spannableString.setSpan(bgSpan,0,2, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-        //设置字体大小
-        AbsoluteSizeSpan sizeSpan = new AbsoluteSizeSpan(18);
-        spannableString.setSpan(sizeSpan,0,2, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        //颜色
-        ForegroundColorSpan colorSpan = new ForegroundColorSpan(Color.RED);
-        spannableString.setSpan(colorSpan,0,2, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-        iv_Text.setText(spannableString);
-        //设置图片
-        SpannableString spannableString1 = new SpannableString(" ");
-        Drawable drawable = getResources().getDrawable(R.drawable.ic_launcher);
-        drawable.setBounds(0,0,drawable.getIntrinsicWidth(),drawable.getIntrinsicHeight());
-        ImageSpan span = new ImageSpan(drawable, ImageSpan.ALIGN_BASELINE);
-        spannableString.setSpan(drawable,0,1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
-        iv_Text.setText(spannableString1);
-        iv_Text.append(spannableString);
-    }
-
-    @Override
-    protected void initData() {
+        vpBannerTop = (ViewPager) root.findViewById(R.id.vp_Live);
 
     }
 
     @Override
     protected void initEvents() {
+        vpBannerTop.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
+
+    @Override
+    protected void initData() {
+
+        DiscoverUtil.getLive(new KaoLaTask.IRequestCallBack() {
+            @Override
+            public void success(Object object) {
+                try {
+                    //解析从直播界面请求回来的信息
+                    JSONObject root = new JSONObject(object.toString());
+                    String message = root.getString("message");
+                    if ("success".equals(message)) {
+                        JSONObject result = root.getJSONObject("result");
+                        JSONArray dataList = result.getJSONArray("dataList");
+                        //得到数据
+                        List<Live> live = Live.arrayLiveFromData(dataList.toString());
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void error(String msg) {
+
+            }
+        });
+
+        List<ImageView> ivBanners = new ArrayList<>();
+        List<String> ivUrl;
+       // CommonImageAdapter imageAdapter = new CommonImageAdapter(ivBanners,ivUrl);
+    }
+
 }

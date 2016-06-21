@@ -66,7 +66,7 @@ public class EnterAdpater extends  RecyclerView.Adapter<EnterAdpater.EnterViewHo
                     JumpManager.jumpToWeb(context,list.get(position).getWeburl());
                 }else{
                     if (!special.getMp3PlayUrl().isEmpty()) {
-                        JumpManager.jumpToPlayer1(context,special.getMp3PlayUrl());
+                        JumpManager.jumpToPlayer1(context,special.getMp3PlayUrl(),special);
 
                     }
                 }
