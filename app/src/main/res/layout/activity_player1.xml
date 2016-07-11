@@ -50,31 +50,35 @@
         android:layout_width="match_parent"
         android:layout_height="60dp">
         <ImageView
-            android:padding="15dp"
+            android:padding="10dp"
             android:id="@+id/btn_love"
             android:src="@drawable/btn_player_good_normal"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
         <ImageView
-            android:padding="15dp"
+            android:padding="10dp"
             android:src="@drawable/btn_download_normal"
             android:id="@+id/btn_download"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
         <ImageView
-            android:src="@drawable/btn_download_press"
+            android:src="@drawable/comments_normal"
+            android:padding="10dp"
             android:id="@+id/btn_push"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
         <ImageView
-            android:id="@+id/btn_share"
+            android:padding="10dp"
+            android:id="@+id/btn_share_normals"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
         <ImageView
+            android:padding="10dp"
+            android:src="@drawable/btn_live_more_normal"
             android:id="@+id/btn_more"
             android:layout_width="0dp"
             android:layout_height="match_parent"

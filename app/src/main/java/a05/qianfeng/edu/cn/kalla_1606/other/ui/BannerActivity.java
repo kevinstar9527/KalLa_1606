@@ -54,8 +54,9 @@ public class BannerActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         //给一个界面提示
-                        Toast.makeText(BannerActivity.this, "倒计时" + time + "秒 跳转", Toast.LENGTH_SHORT).show();
-
+                        if (time!=0) {
+                            Toast.makeText(BannerActivity.this, "倒计时" + time + "秒 跳转", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
                 if (time == 0) {

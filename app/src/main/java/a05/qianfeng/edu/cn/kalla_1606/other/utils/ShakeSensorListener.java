@@ -21,10 +21,10 @@ public class ShakeSensorListener implements SensorEventListener {
     /*
     * 速度阀值
     * */
-    private final int speedTag = 200;
+    private final int speedTag =180;
     private long lastTime = 0;
     //延迟的时间
-    private long delay = 100;
+    private long delay =100;
     private float lastX,lastY,lastZ;
     private IShakeListener listener ;
 
@@ -40,12 +40,13 @@ public class ShakeSensorListener implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         float[] values = event.values;
+        //当前的值
         float x = values[0];
         float y = values[1];
         float z = values [2];
        long currTime = SystemClock.currentThreadTimeMillis();//获取当前时间
       // long currTime=  System.currentTimeMillis();//这个方法有延迟
-        if (currTime-lastTime<delay){
+        if (currTime-lastTime<delay){//当时间间隔为这个是执行下面的操作
 
             return;
         }
@@ -61,14 +62,18 @@ public class ShakeSensorListener implements SensorEventListener {
         Log.e("speed","1 = " +speed);
         if (speed>speedTag){
             //如果速度达到阀值，可以进行你想要的操作
+            //执行振动事件
+            if (listener!=null) {
+
+                listener.onShake();
+            }
+
             Log.e("speed","2 = " +speed);
         }
         //重新计算上一次的坐标
         lastX =x;
         lastY = y;
         lastZ = z;
-        //执行振动事件
-        listener.onShake();
 
     }
 

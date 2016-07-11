@@ -3,8 +3,6 @@ package a05.qianfeng.edu.cn.kalla_1606.discover.ui;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,7 +21,7 @@ import java.util.TimerTask;
 
 import a05.qianfeng.edu.cn.kalla_1606.R;
 import a05.qianfeng.edu.cn.kalla_1606.discover.bean.Special;
-import a05.qianfeng.edu.cn.kalla_1606.other.utils.Blur;
+import a05.qianfeng.edu.cn.kalla_1606.other.utils.FastBlur;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.FileUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.HttpUtils;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.JumpManager;
@@ -62,6 +60,7 @@ public class Player1Activity extends AppCompatActivity implements MediaPlayer.On
     private TextView tvTitle;
     private ImageView btnPause;
     private ImageView ivBack;
+    private TextView tvContent;
 
     /*默认是循环模式*/
     @Override
@@ -74,6 +73,9 @@ public class Player1Activity extends AppCompatActivity implements MediaPlayer.On
         ivHead = (ImageView) findViewById(R.id.header_iv);
         //标题栏
         tvTitle = (TextView) findViewById(R.id.title_tv);
+        //歌曲名称
+        tvContent = (TextView) findViewById(R.id.player1_title_tv);
+        //设置歌曲名称
 
         //播放暂停按钮
         btnPause = (ImageView) findViewById(R.id.player_pause_btn);
@@ -126,6 +128,7 @@ public class Player1Activity extends AppCompatActivity implements MediaPlayer.On
         Special special = (Special) getIntent().getSerializableExtra(JumpManager.TAG_SPECIAL);
         //设置标题
         tvTitle.setText(special.getAlbumName());
+        tvContent.setText(special.getDes());
         final String picUrl = special.getPic();
         new KaoLaTask(new KaoLaTask.IRequest() {
             @Override
@@ -137,29 +140,9 @@ public class Player1Activity extends AppCompatActivity implements MediaPlayer.On
         }, new KaoLaTask.IRequestCallBack() {
             @Override
             public void success(Object object) {
-                //处理以及显示图片
-                File file = (File) object;
-                Bitmap pic = BitmapFactory.decodeFile(file.getAbsolutePath());
-                Bitmap background = Blur.fastblur(Player1Activity.this,pic,20);
-                Drawable target = new BitmapDrawable(getResources(),background);
-                //设置背景
-                ivBottom.setBackground(target);
-                //设置显示图片
-                //缩放图片以达到显示效果
-                float sx,sy;
-                int width = ivContent.getWidth();
-                int height = ivContent.getHeight();
-                int tBwidth = background.getWidth();
-                int tBheight = background.getHeight();
-                sx = 1.0f*width/tBwidth;
-                sy = 1.0f*height/tBheight;
-                Matrix matrix = new Matrix();
-                matrix.setScale(sx,sy);
-                Bitmap content = Bitmap.createBitmap(background,0,0,background.getWidth(),background.getHeight(),matrix,false);
+                //界面显示
+                show((File) object);
 
-                ivContent.setImageBitmap(content);
-
-                setHeaderIvImage(background);
             }
 
             @Override
@@ -167,6 +150,32 @@ public class Player1Activity extends AppCompatActivity implements MediaPlayer.On
 
             }
         }).execute();
+    }
+
+    private void show(File object) {
+        //处理以及显示图片
+        File file = object;
+        Bitmap pic = BitmapFactory.decodeFile(file.getAbsolutePath());
+        FastBlur.blur(Player1Activity.this,pic,ivBottom);
+       // Drawable target = new BitmapDrawable(getResources(),background);
+        //设置背景
+       // ivBottom.setBackground(target);
+        //设置显示图片
+        //缩放图片以达到显示效果
+        float sx,sy;
+        int width =400;
+        int height = 400;
+        int tBwidth = pic.getWidth();
+        int tBheight = pic.getHeight();
+        sx = 1.0f*width/tBwidth;
+        sy = 1.0f*height/tBheight;
+        Matrix matrix = new Matrix();
+        matrix.setScale(sx,sy);
+        Bitmap content = Bitmap.createBitmap(pic,0,0,pic.getWidth(),pic.getHeight(),matrix,false);
+
+        ivContent.setImageBitmap(content);
+
+        setHeaderIvImage(pic);
     }
 
     private void playByUrl (final String mp3Url){
@@ -278,9 +287,27 @@ public class Player1Activity extends AppCompatActivity implements MediaPlayer.On
         super.onDestroy();
         task.cancel();
         timer.cancel();
+       //处理异常
+        try {
+
+            mediaPlayer.release();
+        }catch (Exception e){
+
+        }
+
+        mediaPlayer=null;
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        task.cancel();
+        timer.cancel();
+        if (mediaPlayer.isPlaying())
         mediaPlayer.release();
         mediaPlayer=null;
     }
+
     //设置头像
     private void setHeaderIvImage(Bitmap tempBitmap) {
 
@@ -297,7 +324,7 @@ public class Player1Activity extends AppCompatActivity implements MediaPlayer.On
         //设置缩放的比例
         Matrix matrix = new Matrix();
         matrix.setScale(sx,sy);
-        final Bitmap target = Bitmap.createBitmap(header,0,0,tWidth,tHeight,matrix,true);
+        final Bitmap target = Bitmap.createBitmap(header,0,0,tWidth,tHeight,matrix,false);
         ivHead.setImageBitmap(target);
     }
 }

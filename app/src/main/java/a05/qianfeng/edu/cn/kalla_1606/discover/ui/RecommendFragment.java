@@ -27,6 +27,7 @@ import a05.qianfeng.edu.cn.kalla_1606.discover.bean.Special;
 import a05.qianfeng.edu.cn.kalla_1606.discover.util.DiscoverUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.adapter.CommonImageAdapter;
 import a05.qianfeng.edu.cn.kalla_1606.other.ui.BaseFragment;
+import a05.qianfeng.edu.cn.kalla_1606.other.ui.HomeActivity;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.ImageUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.JumpManager;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.KaoLaTask;
@@ -45,6 +46,9 @@ public class RecommendFragment extends BaseFragment {
     private LinearLayout llroot;
     private IndexViewLine indexViewLine;
     private SwipeRefreshLayout refresh;
+    private HomeActivity home = (HomeActivity) getActivity();
+    private ViewPager veiwPager;
+    private RecyclerView recyclerView;
 
 
     @Override
@@ -68,6 +72,7 @@ public class RecommendFragment extends BaseFragment {
     protected void initData() {
 
         refreshData();
+
     }
 
     private void refreshData() {
@@ -174,7 +179,7 @@ public class RecommendFragment extends BaseFragment {
             int width =ViewGroup.LayoutParams.MATCH_PARENT;
             int height = 400;
             //为控件设置宽高
-            final ViewPager veiwPager = new ViewPager(getActivity());
+            veiwPager = new ViewPager(getActivity());
             //为Viewpager设置宽高
             LinearLayout.LayoutParams rootParams = new LinearLayout.LayoutParams(width,height);
             veiwPager.setLayoutParams(rootParams);
@@ -249,7 +254,7 @@ public class RecommendFragment extends BaseFragment {
 *
 * */
     private void addEnter(Recommond recommend){
-        RecyclerView recyclerView = new RecyclerView(getActivity());
+        recyclerView = new RecyclerView(getActivity());
         //宽高
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         recyclerView.setLayoutParams(params);
@@ -267,7 +272,39 @@ public class RecommendFragment extends BaseFragment {
         recyclerView.setAdapter(adpater);
 
         llroot.addView(recyclerView);
+
+
     }
+
+    @Override
+    public void onResume() {
+
+        //设置事件不拦截区域的最高高度
+        if(recyclerView !=null){
+
+            recyclerView.post(new Runnable() {
+                @Override
+                public void run() {
+                   // home.setmMaxHeight(recyclerView.getHeight());
+                }
+            });
+            //获得viewPager左上角y轴的坐标
+
+
+            if (veiwPager !=null) {
+                veiwPager.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        //在视图测量完毕时，获取宽高
+                       // home.setmHeight(veiwPager.getY());
+                    }
+                })  ;
+
+            }
+        }
+        super.onResume();
+    }
+
     private void addVerticalScrollText(Recommond recommond){
     
     /*自定义控件不加业务逻辑，可在其他处用*/

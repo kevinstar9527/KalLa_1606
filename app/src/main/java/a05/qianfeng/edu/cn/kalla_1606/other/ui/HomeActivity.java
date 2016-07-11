@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -32,6 +33,7 @@ import a05.qianfeng.edu.cn.kalla_1606.R;
 import a05.qianfeng.edu.cn.kalla_1606.discover.ui.DiscoverFragment;
 import a05.qianfeng.edu.cn.kalla_1606.download.ui.DownLoadOfflineFragment;
 import a05.qianfeng.edu.cn.kalla_1606.mine.ui.MyRadioFragment;
+import a05.qianfeng.edu.cn.kalla_1606.other.Encode;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.FileUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.HttpUtils;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.ImageUtil;
@@ -54,7 +56,35 @@ public class HomeActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private MyRadioFragment fragment = new MyRadioFragment();
     int lastPosition;
+    //判断NavigationView是否可滑动的第二个参数
+    private boolean judge2 = true;
+    //判断
+    float mHeight = 0;
+    float mMaxHeight= 0;
 
+    public float getmHeight() {
+        return mHeight;
+    }
+
+    public void setmHeight(float mHeight) {
+        this.mHeight = mHeight;
+    }
+
+    public float getmMaxHeight() {
+        return mMaxHeight;
+    }
+
+    public void setmMaxHeight(float mMaxHeight) {
+        this.mMaxHeight = mMaxHeight;
+    }
+
+    public boolean isJudge2() {
+        return judge2;
+    }
+
+    public void setJudge2(boolean judge2) {
+        this.judge2 = judge2;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,8 +102,13 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case R.id.camera:
                         intent = new Intent(HomeActivity.this,CamderActivity.class);
+                        break;
                     case R.id.scan:
                         intent = new Intent(HomeActivity.this,ScanQrActivity.class);
+                        break;
+                    case R.id.encode:
+                        intent = new Intent(HomeActivity.this, Encode.class);
+                        break;
                 }
                 startActivity(intent);
                 //跳转的同时关闭侧边栏
@@ -248,12 +283,29 @@ public class HomeActivity extends AppCompatActivity {
     private KaoLaoSildePanelLayout.IIntercept changeListener = new KaoLaoSildePanelLayout.IIntercept() {
         @Override
         public boolean needIntercepet() {
-            if (discoverPagerIndex==0){
-                return true;
+            if (discoverPagerIndex==0&&judge2){
+                return judge2;
             }
             return false;
         }
     };
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        //计算手指点击的位置
+       // float x = ev.getX();
+        float y = ev.getY();
+
+
+        if ((y>=mHeight)&&(y<=mMaxHeight)){
+
+            setJudge2(false);
+        }else{
+            setJudge2(true);
+        }
+
+        return super.dispatchTouchEvent(ev);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {

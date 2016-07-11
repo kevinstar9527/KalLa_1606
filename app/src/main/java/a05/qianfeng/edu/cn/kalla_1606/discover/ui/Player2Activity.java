@@ -3,7 +3,6 @@ package a05.qianfeng.edu.cn.kalla_1606.discover.ui;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -24,8 +23,8 @@ import java.util.List;
 import a05.qianfeng.edu.cn.kalla_1606.R;
 import a05.qianfeng.edu.cn.kalla_1606.other.adapter.Player2PagerAdapter;
 import a05.qianfeng.edu.cn.kalla_1606.other.bean.PlayEntity;
-import a05.qianfeng.edu.cn.kalla_1606.other.utils.Blur;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.Contants;
+import a05.qianfeng.edu.cn.kalla_1606.other.utils.FastBlur;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.FileUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.HttpUtils;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.KaoLaPageTransformer;
@@ -52,6 +51,8 @@ public class Player2Activity extends AppCompatActivity {
     private TextView type_tv;
     private RelativeLayout rootLayout;
     private Bitmap tempBitmap;
+    //播放页面底部背景图片
+    private ImageView ivBottom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,7 @@ public class Player2Activity extends AppCompatActivity {
         title_tv = (TextView) findViewById(R.id.title_tv);
         type_tv = (TextView) findViewById(R.id.type_tv);
 
-
+        ivBottom = (ImageView) findViewById(R.id.player2_iv_bottom);
         viewPager = (ViewPager) findViewById(R.id.player2_vp);
         viewPager.measure(0,0);
         /*设置禁止全屏显示*/
@@ -138,10 +139,9 @@ public class Player2Activity extends AppCompatActivity {
 
                                                 Bitmap backgroud = tempBitmap;
                                                 //模糊图片
-                                                backgroud = Blur.fastblur(Player2Activity.this,backgroud,25);
 
-                                                BitmapDrawable target = new BitmapDrawable(backgroud);
-                                                rootLayout.setBackgroundDrawable(target);
+                                                FastBlur.blur(Player2Activity.this,backgroud,ivBottom);
+
                                                 setHeaderIvImage(tempBitmap);
                                             }
                                         });
@@ -189,17 +189,7 @@ public class Player2Activity extends AppCompatActivity {
                                                     @Override
                                                     public void run() {
                                                         Bitmap backgroud = tempBitmap;
-                                                        /*backgroud = Blur.blurImageAmeliorate(backgroud);
-                                                        BitmapDrawable target = new BitmapDrawable(backgroud);*/
-                                                        backgroud = Blur.fastblur(Player2Activity.this,backgroud,25);
-                                                        int windwoWidth1 = getResources().getDisplayMetrics().widthPixels;
-                                                        int heightWindow1 = getResources().getDisplayMetrics().heightPixels;
-                                                        Bitmap temp = Bitmap.createBitmap(backgroud,0,0,windwoWidth1,heightWindow1);
-                                                       /* temp = Blur.fastblur(Player2Activity.this,temp,25);
-                                                        temp = Bitmap.createBitmap(temp,0,0,windwoWidth1,heightWindow1);
-                                                        temp = Blur.fastblur(Player2Activity.this,temp,25);*/
-                                                        BitmapDrawable target = new BitmapDrawable(temp);
-                                                        rootLayout.setBackgroundDrawable(target);
+                                                        FastBlur.blur(Player2Activity.this,backgroud,ivBottom);
                                                         //设置头像
                                                         setHeaderIvImage(tempBitmap);
                                                     }

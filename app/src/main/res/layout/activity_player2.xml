@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:clipChildren="false"
     android:layout_height="match_parent">
-
+    <ImageView
+        android:id="@+id/player2_iv_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <!--标题栏-->
     <RelativeLayout
         android:id="@+id/player1_top_rl"
@@ -37,6 +40,7 @@
             />
 
     </RelativeLayout>
+
 <!--播放界面-->
 <android.support.v4.view.ViewPager
    android:layout_below="@id/player1_top_rl"

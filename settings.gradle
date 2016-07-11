@@ -1,2 +1,2 @@
-include ':app', ':PullToRefresh-library', ':testevent', ':ceshichengxun', ':libzxing', ':testzxing', ':JPushExample'
+include ':app', ':PullToRefresh-library', ':libzxing', ':jpushyellow'
 

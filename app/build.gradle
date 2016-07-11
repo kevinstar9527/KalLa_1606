@@ -34,8 +34,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-   // compile fileTree(include: ['*.so'], dir: 'jniLibs')
-
+    // compile fileTree(include: ['*.so'], dir: 'jniLibs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
@@ -60,4 +59,5 @@ dependencies {
     compile files('libs/ShareSDK-Wechat-Favorite-2.7.2.jar')
     compile files('libs/ShareSDK-Wechat-Moments-2.7.2.jar')
     compile files('libs/jpush-android-2.1.5.jar')
+    compile files('libs/tools.jar')
 }

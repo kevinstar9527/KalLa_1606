@@ -3,14 +3,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!--广告栏-->
+   <!-- &lt;!&ndash;广告栏&ndash;&gt;
     <android.support.v4.view.ViewPager
         android:background="#ffff00"
         android:id="@+id/vp_Live"
         android:layout_width="match_parent"
         android:layout_height="50dp">
     </android.support.v4.view.ViewPager>
-    <!--正在直播模块-->
+    &lt;!&ndash;正在直播模块&ndash;&gt;
     <LinearLayout
         android:orientation="vertical"
         android:padding="10dp"
@@ -45,20 +45,20 @@
 
 
     </LinearLayout>
-    <!--列表-->
+    &lt;!&ndash;列表&ndash;&gt;
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_Live"
         android:layout_width="match_parent"
         android:layout_height="100dp">
 
     </android.support.v7.widget.RecyclerView>
-    <!--单栏广告页-->
+    &lt;!&ndash;单栏广告页&ndash;&gt;
     <ImageView
         android:id="@+id/iv_single_banner"
         android:background="@android:color/darker_gray"
         android:layout_width="match_parent"
         android:layout_height="60dp" />
-    <!--线上沙龙-->
+    &lt;!&ndash;线上沙龙&ndash;&gt;
     <LinearLayout
         android:orientation="vertical"
         android:padding="10dp"
@@ -98,7 +98,7 @@
 
     </android.support.v7.widget.RecyclerView>
 
-    <!--线上沙龙-->
+    &lt;!&ndash;线上沙龙&ndash;&gt;
     <LinearLayout
         android:orientation="vertical"
         android:padding="10dp"
@@ -137,16 +137,16 @@
         android:layout_height="100dp">
 
     </android.support.v7.widget.RecyclerView>
-    <!--热门主播-->
+    &lt;!&ndash;热门主播&ndash;&gt;
     <include layout="@layout/widget_corner_panel">
 
     </include>
-    <!--精彩直播预告-->
+    &lt;!&ndash;精彩直播预告&ndash;&gt;
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_Live_bottom"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
     </android.support.v4.view.ViewPager>
-
+-->
 </LinearLayout>

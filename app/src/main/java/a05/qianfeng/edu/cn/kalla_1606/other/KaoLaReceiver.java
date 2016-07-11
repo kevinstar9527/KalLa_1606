@@ -14,15 +14,7 @@ import java.util.Iterator;
 import cn.jpush.android.api.JPushInterface;
 
 /**
- * Created by Administrator on 2016/6/21.
- */
-
-/**
- * 自定义接收器
- *
- * 如果不定义这个 Receiver，则：
- * 1) 默认用户会打开主界面
- * 2) 接收不到自定义消息
+ * Created by Administrator on 2016/6/22.
  */
 public class KaoLaReceiver extends BroadcastReceiver {
     private static final String TAG = "JPush";
@@ -39,7 +31,7 @@ public class KaoLaReceiver extends BroadcastReceiver {
 
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
             Log.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
-          //  processCustomMessage(context, bundle);
+            processCustomMessage(context, bundle);
 
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
             Log.d(TAG, "[MyReceiver] 接收到推送下来的通知");
@@ -49,8 +41,6 @@ public class KaoLaReceiver extends BroadcastReceiver {
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
             Log.d(TAG, "[MyReceiver] 用户点击打开了通知");
 
-            //点开通知进入播放页面1
-           // JumpManager.jumpToPlayer1();
 //            //打开自定义的Activity
 //            Intent i = new Intent(context, TestActivity.class);
 //            i.putExtras(bundle);
@@ -104,8 +94,8 @@ public class KaoLaReceiver extends BroadcastReceiver {
         return sb.toString();
     }
 
-//    //send msg to MainActivity
-//    private void processCustomMessage(Context context, Bundle bundle) {
+    //send msg to MainActivity
+    private void processCustomMessage(Context context, Bundle bundle) {
 //        if (MainActivity.isForeground) {
 //            String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
 //            String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
@@ -124,5 +114,5 @@ public class KaoLaReceiver extends BroadcastReceiver {
 //            }
 //            context.sendBroadcast(msgIntent);
 //        }
-//    }
+    }
 }

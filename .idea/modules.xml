@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/JPushExample/JPushExample.iml" filepath="$PROJECT_DIR$/JPushExample/JPushExample.iml" />
       <module fileurl="file://$PROJECT_DIR$/KalLa_1606.iml" filepath="$PROJECT_DIR$/KalLa_1606.iml" />
       <module fileurl="file://$PROJECT_DIR$/PullToRefresh-library/PullToRefresh-library.iml" filepath="$PROJECT_DIR$/PullToRefresh-library/PullToRefresh-library.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ceshichengxun/ceshichengxun.iml" filepath="$PROJECT_DIR$/ceshichengxun/ceshichengxun.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpushyellow/jpushyellow.iml" filepath="$PROJECT_DIR$/jpushyellow/jpushyellow.iml" />
       <module fileurl="file://$PROJECT_DIR$/libzxing/libzxing.iml" filepath="$PROJECT_DIR$/libzxing/libzxing.iml" />
-      <module fileurl="file://$PROJECT_DIR$/testevent/testevent.iml" filepath="$PROJECT_DIR$/testevent/testevent.iml" />
-      <module fileurl="file://$PROJECT_DIR$/testzxing/testzxing.iml" filepath="$PROJECT_DIR$/testzxing/testzxing.iml" />
     </modules>
   </component>
 </project>

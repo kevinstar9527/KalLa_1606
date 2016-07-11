@@ -77,6 +77,7 @@ public class DiscoverFragment extends BaseFragment {
                 //切换ViewPager的时候让TabLayout联动
                 tabLayout.getTabAt(position).select();
                 HomeActivity home = (HomeActivity) getActivity();
+                //设置位置
                 home.setDiscoverPagerIndex(position);
                 Log.e("position","-------"+position);
             }

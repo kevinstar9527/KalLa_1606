@@ -23,14 +23,13 @@
     <!-- 蓝牙分享所需的权限 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-
-    <!--极光推送权限-->
+    <!--极光推送-->
     <permission
-        android:name="KaoLaSuper.com.permission.JPUSH_MESSAGE"
+        android:name="a05.qianfeng.edu.cn.kalla_1606.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
 
     <!-- Required  一些系统要求的权限，如访问网络等-->
-    <uses-permission android:name="KaoLaSuper.com.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="a05.qianfeng.edu.cn.kalla_1606.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -53,7 +52,6 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
-
     <application
         android:name=".other.KaoLaApplication"
         android:allowBackup="true"
@@ -73,6 +71,7 @@
 
         <!-- 广告页 -->
         <activity android:name=".other.ui.BannerActivity" />
+        <activity android:name=".other.Encode"/>
 
         <!-- 主页面 -->
         <activity android:name=".other.ui.HomeActivity" />
@@ -155,9 +154,6 @@
             android:name=".mine.ui.ScrollingActivityDemo"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/AppTheme"></activity>
-
-
-        <!--极光推送-->
         <!-- Rich push 核心功能 since 2.0.6-->
         <activity
             android:name="cn.jpush.android.ui.PopWinActivity"
@@ -174,7 +170,7 @@
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="KaoLaSuper.com" />
+                <category android:name="a05.qianfeng.edu.cn.kalla_1606" />
             </intent-filter>
         </activity>
         <!-- Required  SDK核心功能-->
@@ -207,7 +203,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
-                <category android:name="KaoLaSuper.com" />
+                <category android:name="a05.qianfeng.edu.cn.kalla_1606" />
             </intent-filter>
 
         </service>
@@ -219,7 +215,7 @@
             android:exported="false">
             <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
-                <category android:name="KaoLaSuper.com" />
+                <category android:name="a05.qianfeng.edu.cn.kalla_1606" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
@@ -239,7 +235,7 @@
 
         <!-- User defined.  For test only  用户自定义的广播接收器-->
         <receiver
-            android:name=".other.KaoLaReceiver"
+            android:name="a05.qianfeng.edu.cn.kalla_1606.other.KaoLaReceiver"
             android:exported="false"
             android:enabled="true">
             <intent-filter>
@@ -250,16 +246,14 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
                 <action android:name="cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK" /> <!--Optional 用户接受Rich Push Javascript 回调函数的intent-->
                 <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
-                <category android:name="KaoLaSuper.com" />
+                <category android:name="a05.qianfeng.edu.cn.kalla_1606" />
             </intent-filter>
         </receiver>
 
 
         <!-- Required  . Enable it you can get statistics data with channel -->
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
-        <meta-data android:name="JPUSH_APPKEY" android:value="f4fd9a2a1e7d55c852a60eb0" /> <!--  </>值来自开发者平台取得的AppKey-->
-
-
+        <meta-data android:name="JPUSH_APPKEY" android:value="e4ad456fdd071b1dc0fd8538" /> <!--  </>值来自开发者平台取得的AppKey-->
 
     </application>
 

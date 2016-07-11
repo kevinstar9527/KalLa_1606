@@ -43,17 +43,19 @@ public class ShakeActivity extends AppCompatActivity {
                 Log.e("shake--","正在振动");
                 imageView.setImageDrawable(animation);
                 animation.start();
-//                 long[] patter = new long[]{2000,5000,3000,600,700};
-//                vibrator.vibrate(patter,0);
+//                //振动频率
+                long[] patter = new long[]{200,300,600,200,700};
+                vibrator.vibrate(patter,1);
+              //  vibrator.vibrate(2000);
                 //两秒后停止
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         animation.stop();
                         imageView.setImageResource(R.drawable.a9);
-//                        vibrator.cancel();
+                        vibrator.cancel();
                     }
-                },2000);
+                },5000);
 
                 //2.播放振动声音或者振动
                 //振动十秒钟

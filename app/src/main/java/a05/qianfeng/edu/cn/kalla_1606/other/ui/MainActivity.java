@@ -25,6 +25,7 @@ import a05.qianfeng.edu.cn.kalla_1606.other.utils.FileUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.KaoLaTask;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.LogUtil;
 import a05.qianfeng.edu.cn.kalla_1606.other.utils.OtherHttpUtils;
+import cn.jpush.android.api.JPushInterface;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +49,19 @@ public class MainActivity extends AppCompatActivity {
               compileVersion();
         }
      }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
 
     private void compileVersion() {
          /*进入应用就先请求一下最新版本*/
